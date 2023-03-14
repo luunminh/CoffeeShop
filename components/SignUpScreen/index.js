@@ -3,6 +3,7 @@ import styles from './styles.js'
 import { View, TouchableOpacity, Text, Image, TextInput } from 'react-native'
 import ActiveButton from '../UI/Button/ActiveButton.js'
 import DisabledButton from '../UI/Button/DisabledButton.js'
+import Input from '../UI/Button/Input.js'
 export default function SignUpScreen({ navigation }) {
     return (
         <View style={styles.container}>
@@ -10,32 +11,30 @@ export default function SignUpScreen({ navigation }) {
                 style={styles.nameLogo}
                 source={require('../../assets/img/nameLogo.png')}
             />
-            <Text style={styles.title}>Đăng ký</Text>
+            <Text style={styles.title}>Sign up</Text>
             <View style={styles.inputWrap}>
-                <TextInput
+                <Input
                     style={styles.inputText}
-                    placeholder="Tên tài khoản"
+                    placeholder="Enter your username"
 
-                >
-                </TextInput>
-                <TextInput
+                />
+                <Input
                     style={styles.inputText}
-                    placeholder="Số điện thoại"
-                >
-                </TextInput>
-                <TextInput
+                    placeholder="Enter your phone number"
+
+                />
+                <Input
                     style={styles.inputText}
-                    placeholder="Mật khẩu"
-                >
-                </TextInput>
-                <TextInput
+                    placeholder="Enter your password"
+
+                />
+                <Input
                     style={styles.inputText}
-                    placeholder="Xác nhận mật khẩu"
-                >
-                </TextInput>
+                    placeholder="Confirm your password"
+                />
             </View>
             <View style={styles.btnWrap}>
-                <ActiveButton text="Đăng ký" />
+                <ActiveButton text="Sign up" />
             </View>
         </View>
     )

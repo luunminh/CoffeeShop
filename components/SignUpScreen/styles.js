@@ -15,7 +15,9 @@ const styles = StyleSheet.create({
         fontSize: 30,
         fontWeight: 500,
         color: Colors.activeColor,
-        
+        fontFamily: "Rosarivo",
+        // textTransform: "uppercase"
+
     },
     nameLogo: {
 
@@ -33,6 +35,7 @@ const styles = StyleSheet.create({
         width: "100%",
         borderRadius: 10,
         color: Colors.textColor,
+        fontFamily: "Rosarivo"
     },
     forgotPasswordBtn: {
         width: 140,

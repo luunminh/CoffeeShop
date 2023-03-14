@@ -1,7 +1,8 @@
 import React from 'react'
 
 const Colors = {
-  bgColor: '#201520',
+  bgColor: '#201529',
+  // placeholderColor: "rgba(239, 227, 200, 0.5)",
   activeColor: '#EFE3C8',
   brownColor: "#4A2B29",
   textColor: "#877C74",

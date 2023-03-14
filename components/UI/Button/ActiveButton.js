@@ -21,5 +21,7 @@ const styles = StyleSheet.create({
         textAlign: "center",
         fontSize: 20,
         fontWeight: 700,
+        fontFamily: "Rosarivo"
+
     }
 })

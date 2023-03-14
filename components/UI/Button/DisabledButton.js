@@ -22,5 +22,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 700,
         color: Colors.activeColor,
+        fontFamily: "Rosarivo"
+
     }
 })

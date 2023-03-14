@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
         width: "100%",
         borderRadius: 10,
         color: Colors.textColor,
+        fontFamily: "Rosarivo"
     },
     forgotPasswordBtn: {
         width: 140,
@@ -36,7 +37,8 @@ const styles = StyleSheet.create({
         textAlign: "center",
         fontWeight: 600,
         fontSize: 16,
-        color: Colors.textColor
+        color: Colors.activeColor,
+        fontFamily: "Rosarivo"
 
     },
     btnWrap: {
