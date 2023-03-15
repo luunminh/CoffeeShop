@@ -2,6 +2,7 @@ import React from 'react'
 
 const Colors = {
   bgColor: '#201529',
+  bottomNavigationColor: "#22151F",
   // placeholderColor: "rgba(239, 227, 200, 0.5)",
   activeColor: '#EFE3C8',
   brownColor: "#4A2B29",

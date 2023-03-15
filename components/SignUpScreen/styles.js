@@ -8,8 +8,9 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: Colors.bgColor,
         alignItems: "center",
-        paddingTop: 30,
-        gap: 30,
+        // justifyContent: "center",
+        // paddingTop: 150,
+        gap: 40,
     },
     title: {
         fontSize: 30,
@@ -24,8 +25,7 @@ const styles = StyleSheet.create({
     },
     inputWrap: {
         width: " 80%",
-        gap: 24,
-        alignItems: "center"
+        gap: 20,
     },
     inputText: {
         paddingHorizontal: 10,
@@ -37,6 +37,9 @@ const styles = StyleSheet.create({
         color: Colors.textColor,
         fontFamily: "Rosarivo"
     },
+    forgotPassWrap: {
+        alignItems: "center"
+    },
     forgotPasswordBtn: {
         width: 140,
     },
@@ -44,14 +47,21 @@ const styles = StyleSheet.create({
         textAlign: "center",
         fontWeight: 600,
         fontSize: 16,
-        color: Colors.textColor
+        color: Colors.activeColor,
+        fontFamily: "Rosarivo"
 
     },
     btnWrap: {
         gap: 20,
-        paddingTop: 30,
+        // paddingTop: 30,
     },
+    errorMsg: {
+        color: Colors.redColor,
+        textAlign: "left",
+        paddingLeft: 5,
+        marginBottom: -12
 
+    },
 
 })
 export default styles

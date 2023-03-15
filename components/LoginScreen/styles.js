@@ -17,8 +17,7 @@ const styles = StyleSheet.create({
     },
     inputWrap: {
         width: " 80%",
-        gap: 24,
-        alignItems: "center"
+        gap: 20,
     },
     inputText: {
         paddingHorizontal: 10,
@@ -29,6 +28,9 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         color: Colors.textColor,
         fontFamily: "Rosarivo"
+    },
+    forgotPassWrap: {
+        alignItems: "center"
     },
     forgotPasswordBtn: {
         width: 140,
@@ -45,6 +47,13 @@ const styles = StyleSheet.create({
         gap: 20,
         paddingTop: 30,
     },
+    errorMsg: {
+        color: Colors.redColor,
+        textAlign: "left",
+        paddingLeft: 5,
+        marginBottom: -12
+
+    }
 
 
 })
