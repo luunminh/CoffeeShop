@@ -1,30 +1,63 @@
-import React, { useState } from 'react'
-import styles from './styles.js'
+import React, { useContext, useState } from 'react'
 import { View, TouchableOpacity, Text, Image, TextInput, KeyboardAvoidingView } from 'react-native'
+import styles from './styles.js'
 import ActiveButton from '../UI/Button/ActiveButton.js'
 import DisabledButton from '../UI/Button/DisabledButton.js'
 import Input from '../UI/Button/Input.js'
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
+import { auth, app } from '../../firebase/config.js'
+import { AuthContext } from '../../Context/AuthProvider.js'
+import { addDocument } from '../../firebase/services.js'
+import { StackActions } from '@react-navigation/native';
+
 export default function SignUpScreen({ navigation }) {
+
+    const { user, setUser } = useContext(AuthContext)
+
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
-    const [confirmPass, setConfirmPass] = useState('');
     const [errName, setErrName] = useState(true)
     const [errEmail, setErrEmail] = useState(true)
     const [errPhone, setErrPhone] = useState(true)
     const [errPass, setErrPass] = useState(true)
-    const [errConfirm, setErrConfirm] = useState("Confirm password is not match!")
 
 
+    const isValidAllInput = () => {
+        return ((errName.length === 0) && (errEmail.length === 0)
+            && (errPhone.length === 0) && (errPass.length === 0))
+    }
 
-    const checkConfirmPass = () => {
-        if ((password.trim() === confirmPass.trim() && errPass.length === 0)) {
-            return true;
+    const handleSubmit = () => {
+        if (isValidAllInput) {
+            createUserWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    const { providerData } = userCredential.user
+                    // console.log({ providerData });
+                    const newUser = {
+                        uid: email,
+                        email: email,
+                        phoneNumber: phone,
+                        // password: password,
+                        photoURL: null,
+                        displayName: name,
+                    }
+                    setUser(newUser)
+                    addDocument('users', newUser)
+                    navigation.dispatch(
+                        StackActions.replace('MainContainer', newUser))
+
+                }).catch(error => {
+                    alert('There are some errors while processing !!!')
+                    console.log(error);
+                })
         } else {
-            return false
+            alert('Sign up failed!')
         }
     }
+
+
 
     return (
         <View style={styles.container}>
@@ -82,7 +115,7 @@ export default function SignUpScreen({ navigation }) {
                 />
             </View>
             <View style={styles.btnWrap}>
-                <ActiveButton text="Sign up" />
+                <ActiveButton text="Sign up" tranScreen={handleSubmit} />
             </View>
         </View>
     )

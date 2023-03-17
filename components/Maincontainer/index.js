@@ -5,7 +5,6 @@ import Colors from '../Colors'
 import HomeScreen from './Home';
 import CartScreen from './Cart';
 import FavouriteScreen from './Favourite';
-import { FA5Style } from '@expo/vector-icons/build/FontAwesome5';
 export default function MainContainer({ navigation }) {
     const homeName = 'home'
     const cartName = 'cart'
@@ -35,21 +34,18 @@ export default function MainContainer({ navigation }) {
                     return <Ionicons name={iconName} size={30} color={color} />
                 },
                 tabBarStyle: {
-                    height: 90,
+                    height: 78,
                     paddingTop: 10,
-                    backgroundColor: Colors.bottomNavigationColor,
+                    backgroundColor: Colors.bgColor,
                     alignItems: "center",
-                    borderTopColor: "transparent"
+                    borderTopColor: Colors.bgColor
                 },
                 headerShown: false,
+                tabBarShowLabel: false,
+                tabBarActiveTintColor: Colors.activeColor,
+                tabBarInactiveTintColor: Colors.textColor,
             })
             }
-            tabBarOptions={
-                {
-                    showLabel: false,
-                    activeTintColor: Colors.activeColor,
-                    inactiveTintColor: Colors.textColor,
-                }}
         >
             <Tab.Screen name={homeName} component={HomeScreen} />
             <Tab.Screen name={cartName} component={CartScreen} />

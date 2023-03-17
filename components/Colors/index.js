@@ -1,14 +1,14 @@
 import React from 'react'
 
 const Colors = {
-  bgColor: '#201529',
+  bgColor: '#1C161E',
   bottomNavigationColor: "#22151F",
   // placeholderColor: "rgba(239, 227, 200, 0.5)",
   activeColor: '#EFE3C8',
   brownColor: "#4A2B29",
   textColor: "#877C74",
   bgInputColor: "#171017",
-  sideMenuColor: "#38232A",
+  sideMenuColor: "#322228",
   itemBgColor: "#62C36",
   itemPriceColor: "#463D46",
   redColor: "#C94C4C",

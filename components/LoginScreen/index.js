@@ -1,11 +1,18 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import styles from './styles.js'
-import { View, TouchableOpacity, Text, Image, TextInput } from 'react-native'
+import { View, TouchableOpacity, Text, Image, TextInput, Alert } from 'react-native'
 import { Colors } from 'react-native/Libraries/NewAppScreen'
 import ActiveButton from '../UI/Button/ActiveButton.js'
 import DisabledButton from '../UI/Button/DisabledButton.js'
 import Input from '../UI/Button/Input.js'
+import { signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth'
+import { auth, app } from '../../firebase/config.js'
+import { AuthContext } from '../../Context/AuthProvider.js'
+
+
 export default function LoginScreen({ navigation }) {
+
+
 
     // state
     const [email, setEmail] = useState('');
@@ -14,15 +21,33 @@ export default function LoginScreen({ navigation }) {
     const [errPass, setErrPass] = useState(true)
 
 
+    const handlePasswordReset = () => {
+        sendPasswordResetEmail(auth, email)
+            .then(() => {
+                alert("password reset email has been sent successfully!")
+            })
+            .catch(error => {
+                alert("Your email account is not correct!")
+            })
+
+    }
+
 
 
     const transToSignUpScreen = () => {
         navigation.navigate('SignUpScreen')
     }
+
     const transToMainContainer = () => {
         if (errEmail.length === 0 && errPass.length === 0) {
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
 
-            navigation.navigate('MainContainer')
+                    navigation.navigate('MainContainer')
+                }).catch(error => {
+                    console.log(error);
+                    alert(error)
+                })
         } else {
             alert("Email or Password is not correct!")
         }
@@ -60,9 +85,7 @@ export default function LoginScreen({ navigation }) {
 
                 <View style={styles.forgotPassWrap}>
                     <TouchableOpacity style={styles.forgotPasswordBtn}
-                        onPress={() => {
-                            alert(`${email} + ${password}`)
-                        }}>
+                        onPress={handlePasswordReset}>
                         <Text style={styles.forgotPasswordText}>Forgot password</Text>
                     </TouchableOpacity>
                 </View>
