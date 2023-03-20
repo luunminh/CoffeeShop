@@ -1,19 +1,23 @@
 import React from 'react'
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native'
 import Colors from '../../Colors'
-export default function Item({ navigation }) {
+export default function Item({ navigation, elm }) {
     return (
-        <TouchableOpacity style={styles.container}>
+        <TouchableOpacity style={styles.container}
+            onPress={() => {
+                navigation.navigate("DetailItem", { elm })
+            }}
+        >
             <Image
                 style={styles.itemImg}
-                source={{uri:'https://scontent.fdad3-1.fna.fbcdn.net/v/t39.30808-6/309852616_640043134139736_5004160122942840101_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=LggX_KaFwcMAX9rwzY2&_nc_ht=scontent.fdad3-1.fna&oh=00_AfC3n39nIK9c2aAaxOGXLtCAU6QLpygggdre8TkpeaVKMg&oe=641AEF53'}}
+                source={{ uri: `${elm.image}` }}
             />
             <View style={styles.itemNameWrap}>
-                <Text style={styles.itemName}>Drizzled with Caramel</Text>
+                <Text style={styles.itemName}>{elm.name}</Text>
             </View>
             <View style={styles.priceWrap}>
                 <View style={styles.priceLeftSide}>
-                    <Text style={styles.text}>29.000</Text>
+                    <Text style={styles.text}>{`${new Intl.NumberFormat('en-US').format(elm.price)} `}</Text>
                 </View>
                 <TouchableOpacity style={styles.priceRightSide}>
                     <Image
@@ -34,6 +38,7 @@ const styles = StyleSheet.create({
         borderRadius: 12.61,
         backgroundColor: Colors.itemPriceColor,
         alignItems: "center",
+        minWidth: 135,
 
     },
     itemImg: {
@@ -48,9 +53,10 @@ const styles = StyleSheet.create({
     itemName: {
         color: "#FFF",
         lineHeight: 20,
-        fontSize: 15,
+        fontSize: 16,
         width: "80%",
-        fontFamily: "Rosarivo"
+        fontFamily: "Rosarivo",
+        height: 40,
     },
     priceWrap: {
         marginTop: 11,

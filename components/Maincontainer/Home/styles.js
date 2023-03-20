@@ -81,16 +81,38 @@ const styles = StyleSheet.create({
     }
     , rightSide: {
         flex: 8,
-        alignItems: "center",
+        // alignItems: "center",
         // backgroundColor: "#ccc",
 
     },
-    listItem : {
+    listItem: {
         flexDirection: "row",
         flexWrap: "wrap",
         gap: 16,
         width: "100%",
-        justifyContent: "center"
+        // justifyContent: "center",
+        // backgroundColor: "#ccc",
+        paddingLeft: 28,
+    },
+    errorContainer: {
+        alignItems: "center",
+        height: 250,
+        width: "90%",
+        justifyContent: "center",
+    },
+    errorText: {
+        textAlign: "center",
+        fontSize: 22,
+        fontFamily: "Rosarivo",
+        width: "60%",
+        color: Colors.textColor
+
+    },
+    errorIcon: {
+        fontSize: 30,
+        fontWeight: 700,
+        color: Colors.textColor,
+        paddingVertical: 10,
     }
 
 

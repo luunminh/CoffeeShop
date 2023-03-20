@@ -5,11 +5,12 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { useFonts } from 'expo-font';
 import LoadingScreen from './components/LoadingScreen';
 import LoginScreen from './components/LoginScreen';
+import DetailItem from './components/UI/DetailItem';
 import Colors from "./components/Colors/index";
 import SignUpScreen from './components/SignUpScreen';
 import MainContainer from './components/Maincontainer';
 import AuthProvider from './Context/AuthProvider';
-
+import AppProvider from './Context/AppProvider';
 export default function App() {
 
 
@@ -25,21 +26,24 @@ export default function App() {
   return (
     <NavigationContainer>
       <AuthProvider>
-        <Stack.Navigator initialRouteName='LoginScreen' screenOptions={{ headerStyle: { backgroundColor: Colors.bgColor }, title: '', headerTintColor: Colors.activeColor, headerShadowVisible: false }}>
-          < Stack.Screen
-            options={{
-              headerShown: false,
-            }}
-            name='LoadingScreen' component={LoadingScreen} />
-          <Stack.Screen name='LoginScreen' component={LoginScreen} />
-          <Stack.Screen name='SignUpScreen' component={SignUpScreen} />
-          <Stack.Screen
-            options={{
-              headerShown: false,
-              gestureEnabled: false
-            }}
-            name='MainContainer' component={MainContainer} />
-        </Stack.Navigator>
+        <AppProvider>
+          <Stack.Navigator initialRouteName='LoginScreen' screenOptions={{ headerStyle: { backgroundColor: Colors.bgColor }, title: '', headerTintColor: Colors.activeColor, headerShadowVisible: false }}>
+            < Stack.Screen
+              options={{
+                headerShown: false,
+              }}
+              name='LoadingScreen' component={LoadingScreen} />
+            <Stack.Screen name='LoginScreen' component={LoginScreen} />
+            <Stack.Screen name='SignUpScreen' component={SignUpScreen} />
+            <Stack.Screen name='DetailItem' component={DetailItem} />
+            <Stack.Screen
+              options={{
+                headerShown: false,
+                gestureEnabled: false
+              }}
+              name='MainContainer' component={MainContainer} />
+          </Stack.Navigator>
+        </AppProvider>
       </AuthProvider>
     </NavigationContainer >
 
