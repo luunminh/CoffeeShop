@@ -9,8 +9,8 @@ import Colors from "./components/Colors/index";
 import SignUpScreen from './components/SignUpScreen';
 import MainContainer from './components/Maincontainer';
 import AuthProvider from './Context/AuthProvider';
-export default function App() {
 
+export default function App() {
 
 
   let [fontsLoaded] = useFonts({

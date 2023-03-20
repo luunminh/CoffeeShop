@@ -3,6 +3,7 @@ import { Text, View, TouchableOpacity, Image, TextInput, ScrollView } from 'reac
 import styles from './styles'
 import Header from '../../UI/Header'
 import Input from '../../UI/Button/Input'
+import Item from '../../UI/Item'
 export default function HomeScreen({ navigator }) {
     return (
         <View style={styles.container}>
@@ -48,12 +49,22 @@ export default function HomeScreen({ navigator }) {
                             <TouchableOpacity style={styles.typeItem}>
                                 <Text style={styles.typeItemText}>Coffee</Text>
                             </TouchableOpacity>
-                            
+
                         </View>
                     </ScrollView>
                 </View>
-                <View style={styles.listItem}>
-
+                <View style={styles.rightSide}>
+                    <ScrollView style={styles.scrollContainer}
+                        showsVerticalScrollIndicator={false}>
+                        <View style={styles.listItem}>
+                            <Item/>
+                            <Item/>
+                            <Item/>
+                            <Item/>
+                            <Item/>
+                            <Item/>
+                        </View>
+                    </ScrollView>
                 </View>
             </View>
         </View>

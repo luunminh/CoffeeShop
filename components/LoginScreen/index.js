@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 import styles from './styles.js'
 import { View, TouchableOpacity, Text, Image, TextInput, Alert } from 'react-native'
 import { Colors } from 'react-native/Libraries/NewAppScreen'
@@ -29,20 +29,18 @@ export default function LoginScreen({ navigation }) {
             .catch(error => {
                 alert("Your email account is not correct!")
             })
-
     }
 
 
 
-    const transToSignUpScreen = () => {
+    const transToSignUpScreen = useCallback(() => {
         navigation.navigate('SignUpScreen')
-    }
+    }, [navigation])
 
-    const transToMainContainer = () => {
+    const transToMainContainer = useCallback(() => {
         if (errEmail.length === 0 && errPass.length === 0) {
             signInWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
-
                     navigation.navigate('MainContainer')
                 }).catch(error => {
                     console.log(error);
@@ -51,7 +49,8 @@ export default function LoginScreen({ navigation }) {
         } else {
             alert("Email or Password is not correct!")
         }
-    }
+    }, [errEmail, errPass])
+
     return (
         <View style={styles.container}>
             <Image

@@ -79,9 +79,18 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontFamily: "Rosarivo"
     }
-    , listItem: {
+    , rightSide: {
         flex: 8,
+        alignItems: "center",
+        // backgroundColor: "#ccc",
 
+    },
+    listItem : {
+        flexDirection: "row",
+        flexWrap: "wrap",
+        gap: 16,
+        width: "100%",
+        justifyContent: "center"
     }
 
 

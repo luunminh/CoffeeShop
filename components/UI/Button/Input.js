@@ -3,7 +3,7 @@ import { TextInput, StyleSheet } from 'react-native'
 import Colors from '../../Colors'
 import { isValidEmail, isValidPassword, isValidInput, isValidPhoneNumber } from '../../Validations/Validations'
 
-export default function Input({ placeholder, passwordCheck, setState, setErrState, inputType }) {
+function Input({ placeholder, passwordCheck, setState, setErrState, inputType }) {
     return (
         <TextInput style={styles.inputText}
             placeholder={placeholder}
@@ -35,6 +35,8 @@ export default function Input({ placeholder, passwordCheck, setState, setErrStat
         </TextInput >
     )
 }
+
+export default React.memo(Input)
 
 
 const styles = StyleSheet.create({

@@ -1,7 +1,8 @@
 import React from 'react'
 import { TouchableOpacity, Text, StyleSheet } from 'react-native'
 import Colors from '../../Colors'
-export default function DisabledButton({ text, tranScreen }) {
+function DisabledButton({ text, tranScreen }) {
+    console.log("button re-render");
     return (
         <TouchableOpacity style={styles.btnContainer} onPress={tranScreen}>
             <Text style={styles.colorText}>{text}</Text>
@@ -26,3 +27,4 @@ const styles = StyleSheet.create({
 
     }
 })
+export default React.memo(DisabledButton)

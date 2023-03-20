@@ -10,7 +10,7 @@ const Colors = {
   bgInputColor: "#171017",
   sideMenuColor: "#322228",
   itemBgColor: "#62C36",
-  itemPriceColor: "#463D46",
+  itemPriceColor: "#362C36",
   redColor: "#C94C4C",
   lineColor: "#4D444D",
   yellowColor: "D2AF84",
