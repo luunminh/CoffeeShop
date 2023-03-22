@@ -11,9 +11,10 @@ function ActiveButton({ text, tranScreen }) {
 
 const styles = StyleSheet.create({
     btnContainer: {
-        width: 316,
+        width: '100%',
+        minWidth: 316,
         paddingHorizontal: 20,
-        paddingVertical: 18,
+        paddingVertical: 16,
         backgroundColor: Colors.activeColor,
         borderRadius: 10,
     },

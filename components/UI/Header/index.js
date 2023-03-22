@@ -2,11 +2,22 @@ import React from 'react'
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native'
 import UserAvatar from 'react-native-user-avatar-component'
 import Colors from '../../Colors'
+import { Toast } from 'react-native-toast-message/lib/src/Toast'
 function Header({ navigation, user, reloadFunc }) {
     return (
         <View style={styles.container}>
             <TouchableOpacity style={styles.leftSide}
-                onPress={() => reloadFunc(prev => !prev)}
+                onPress={() => {
+                    reloadFunc(prev => !prev)
+                    Toast.show({
+                        type: 'success',
+                        text1: "Reload your data",
+                        // text2: "There are some errors while processing !!!",
+                        autoHide: 'true',
+                        visibilityTime: 1000
+
+                    })
+                }}
             >
                 <Image
                     style={styles.nameLogo}
@@ -16,6 +27,7 @@ function Header({ navigation, user, reloadFunc }) {
             <TouchableOpacity style={styles.rightSide}>
                 <UserAvatar size="48" color={Colors.textColor} name={`${(user) ? user.photoURL : 'Son Hoang'}`} src={`${(user) ? user.photoURL : ''}`} />
             </TouchableOpacity>
+            <Toast />
         </View>
     )
 }

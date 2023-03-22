@@ -7,6 +7,7 @@ import Colors from '../../Colors'
 import ActiveButton from '../Button/ActiveButton'
 import BackButton from './BackButton'
 import { AppContext } from '../../../Context/AppProvider';
+import { Toast } from 'react-native-toast-message/lib/src/Toast.js'
 export default function DetailItem({ route, navigation }) {
     const { coffeeList, setCoffeeList } = useContext(AppContext)
     const { elm } = route.params
@@ -36,7 +37,24 @@ export default function DetailItem({ route, navigation }) {
                 await updateDoc(docRef, {
                     isfavourite: favourite
                 });
+                if (favourite) {
+                    Toast.show({
+                        type: 'success',
+                        text1: "Added to your favorites",
+                        // text2: "There are some errors while processing !!!",
+                        autoHide: 'true',
+                        visibilityTime: 1000
+                    })
+                } else {
+                    Toast.show({
+                        type: 'success',
+                        text1: "Removes to your favorites",
+                        // text2: "There are some errors while processing !!!",
+                        autoHide: 'true',
+                        visibilityTime: 1000
 
+                    })
+                }
                 setIsReload(false)
             }
         }
@@ -74,11 +92,11 @@ export default function DetailItem({ route, navigation }) {
             </View>
             <View style={styles.priceWrap}>
                 <Text style={styles.priceTitle}>Price</Text>
-                <Text style={styles.itemPrice}>{`${new Intl.NumberFormat('en-US').format(elm.price)} VNĐ`}</Text>
+                <Text style={styles.itemPrice}>{`${new Intl.NumberFormat('en-US').format(elm.price)} VNĐ`}
+                </Text>
             </View>
-            <ActiveButton text='BUY NOW' />
-
-
+            <ActiveButton text='Buy now' />
+            <Toast />
         </View>
     )
 }

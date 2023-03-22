@@ -11,15 +11,16 @@ function DisabledButton({ text, tranScreen }) {
 
 const styles = StyleSheet.create({
     btnContainer: {
-        width: 316,
+        width: '100%',
+        minWidth: 316,
         paddingHorizontal: 20,
-        paddingVertical: 18,
+        paddingVertical: 16,
         backgroundColor: Colors.brownColor,
         borderRadius: 10,
     },
     colorText: {
         textAlign: "center",
-        fontSize: 20,
+        fontSize: 19,
         color: Colors.activeColor,
         fontFamily: "Rosarivo"
 
