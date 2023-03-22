@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     },
     rightSide: {
         flex: 8,
-        // alignItems: "center",
+        alignItems: "center",
         // backgroundColor: "#ccc",
 
     },
@@ -58,8 +58,9 @@ const styles = StyleSheet.create({
         flexWrap: "wrap",
         gap: 16,
         width: "100%",
+        minWidth: 350,
         // justifyContent: "center",
-        // backgroundColor: "#ccc",
+        // backgroundColor: "#ddd",
         paddingLeft: 30,
     },
     errorContainer: {

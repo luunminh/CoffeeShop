@@ -1,14 +1,22 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native'
+import { Ionicons } from '@expo/vector-icons';
+import { db } from '../../../firebase/config';
+import { doc, setDoc, updateDoc } from 'firebase/firestore'
 import Colors from '../../Colors'
 import ActiveButton from '../Button/ActiveButton'
 import BackButton from './BackButton'
+import { AppContext } from '../../../Context/AppProvider';
 export default function DetailItem({ route, navigation }) {
+    const { coffeeList, setCoffeeList } = useContext(AppContext)
     const { elm } = route.params
-
+    const [favourite, setIsFavourite] = useState(elm.isfavourite)
+    const [isReload, setIsReload] = useState(false)
     const backToPrevPage = useCallback(() => {
         navigation.goBack()
     }, [navigation])
+
+
     useEffect(() => {
         navigation.setOptions({
             // headerTransparent: true,
@@ -18,6 +26,24 @@ export default function DetailItem({ route, navigation }) {
             )
         })
     }, [])
+
+
+    useEffect(() => {
+        async function updateData() {
+            if (isReload) {
+                const docRef = doc(db, 'coffee', elm.id)
+                await setDoc(docRef, elm);
+                await updateDoc(docRef, {
+                    isfavourite: favourite
+                });
+
+                setIsReload(false)
+            }
+        }
+        updateData()
+
+    }, [isReload])
+
     return (
         <View style={styles.container}>
             <Image
@@ -26,8 +52,21 @@ export default function DetailItem({ route, navigation }) {
             />
             <View style={styles.nameWrap}>
                 <Text style={styles.itemName}>{elm.name}</Text>
-                <TouchableOpacity style={styles.favouriteWrap}>
-
+                <TouchableOpacity style={styles.favouriteWrap}
+                    onPress={() => {
+                        const arr = coffeeList.map((item) => {
+                            if (item.id === elm.id) {
+                                let newItem = { ...item, isfavourite: !elm.isfavourite }
+                                return newItem
+                            }
+                            return item
+                        });
+                        setIsFavourite(prev => !prev)
+                        setIsReload(true)
+                        setCoffeeList(arr)
+                    }}
+                >
+                    <Ionicons name={`${(favourite) ? 'heart' : 'heart-outline'}`} size={30} color={`${favourite ? Colors.redColor : Colors.activeColor}`} />
                 </TouchableOpacity>
             </View>
             <View style={styles.descWrap}>
@@ -61,8 +100,8 @@ const styles = StyleSheet.create({
     nameWrap: {
         width: "95%",
         flexDirection: "row",
-        marginBottom: 8,
-        justifyContent: "flex-start",
+        marginBottom: 12,
+        justifyContent: "space-between",
     },
     itemName: {
         fontSize: 24,
@@ -84,7 +123,7 @@ const styles = StyleSheet.create({
     , priceWrap: {
         width: "95%",
         marginTop: 20,
-        marginBottom: 30,
+        marginBottom: 26,
         gap: 12,
         alignItems: "flex-start",
     },

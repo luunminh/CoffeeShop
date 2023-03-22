@@ -24,7 +24,7 @@ export default function HomeScreen({ navigation }) {
             return rs;
         })
 
-    }, [searchInput, categoriesIndex])
+    }, [searchInput, categoriesIndex, coffeeList])
 
     useEffect(() => {
         if (searchInput.trim().length > 0) {

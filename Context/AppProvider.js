@@ -40,6 +40,7 @@ export default function AppProvider({ children }) {
 
 
     useEffect(() => {
+        console.log("reset coffeeList");
         let categoriesList = coffeeList.map((item) => {
             return item.categories
         })
