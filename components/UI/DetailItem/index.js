@@ -1,10 +1,23 @@
-import React from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native'
 import Colors from '../../Colors'
 import ActiveButton from '../Button/ActiveButton'
-export default function DetailItem({ route }) {
+import BackButton from './BackButton'
+export default function DetailItem({ route, navigation }) {
     const { elm } = route.params
 
+    const backToPrevPage = useCallback(() => {
+        navigation.goBack()
+    }, [navigation])
+    useEffect(() => {
+        navigation.setOptions({
+            // headerTransparent: true,
+            // headerStyle: {}
+            headerLeft: () => (
+                <BackButton goBackFunc={backToPrevPage} />
+            )
+        })
+    }, [])
     return (
         <View style={styles.container}>
             <Image
@@ -36,11 +49,12 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: Colors.bgColor,
         padding: 16,
-        alignItems: "center"
+        alignItems: "center",
+        paddingTop: 0,
     },
     itemImg: {
         width: "98%",
-        height: 400,
+        height: 411,
         borderRadius: 40,
         marginBottom: 18,
     },
@@ -57,7 +71,8 @@ const styles = StyleSheet.create({
         color: "#FFF",
     },
     descWrap: {
-        width: "95%"
+        width: "95%",
+        maxHeight: 80
     },
     itemDesc: {
         fontSize: 14,

@@ -5,21 +5,26 @@ import Header from '../../UI/Header'
 import Input from '../../UI/Button/Input'
 import Item from '../../UI/Item'
 import { AppContext } from '../../../Context/AppProvider'
-import { Colors } from 'react-native/Libraries/NewAppScreen'
+import SideBar from '../../UI/SideBar'
 export default function HomeScreen({ navigation }) {
 
-    const { coffeeList, setCoffeeList, isReload, setIsReload } = useContext(AppContext)
+    const { coffeeList, setCoffeeList, isReload, setIsReload, categories, categoriesIndex } = useContext(AppContext)
     const [searchInput, setSearchInput] = useState('')
     const [coffeeSearchList, setCoffeeSearchList] = useState(coffeeList)
     useEffect(() => {
         setCoffeeSearchList(() => {
-            const rs = coffeeList.filter((item) => {
-                return item.name.toLowerCase().includes(searchInput.trim().toLowerCase())
+            let rs = coffeeList.filter((item) => {
+                return (item.name.toLowerCase().includes(searchInput.trim().toLowerCase()))
             })
+            if (categoriesIndex !== 0) {
+                rs = rs.filter(item => {
+                    return item.categories === categories[categoriesIndex]
+                })
+            }
             return rs;
         })
 
-    }, [searchInput])
+    }, [searchInput, categoriesIndex])
 
     useEffect(() => {
         if (searchInput.trim().length > 0) {
@@ -48,35 +53,7 @@ export default function HomeScreen({ navigation }) {
                 </View>
             </View>
             <View style={styles.secondContainer}>
-                <View style={styles.sideMenu}>
-                    <ScrollView style={styles.scrollContainer}
-                        showsVerticalScrollIndicator={false}>
-                        <View style={styles.typeList}>
-                            <TouchableOpacity style={styles.typeItem}>
-                                <Text style={styles.typeItemText}>Capuchino</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.typeItem}>
-                                <Text style={styles.typeItemText}>Latte</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.typeItem}>
-                                <Text style={styles.typeItemText}>Freeze</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.typeItem}>
-                                <Text style={styles.typeItemText}>Tea</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.typeItem}>
-                                <Text style={styles.typeItemText}>MilkTea</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.typeItem}>
-                                <Text style={styles.typeItemText}>Coffee</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.typeItem}>
-                                <Text style={styles.typeItemText}>Coffee</Text>
-                            </TouchableOpacity>
-
-                        </View>
-                    </ScrollView>
-                </View>
+                <SideBar />
                 <View style={styles.rightSide}>
                     <ScrollView style={styles.scrollContainer}
                         showsVerticalScrollIndicator={false}>

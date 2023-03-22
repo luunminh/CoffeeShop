@@ -27,7 +27,11 @@ export default function App() {
     <NavigationContainer>
       <AuthProvider>
         <AppProvider>
-          <Stack.Navigator initialRouteName='LoginScreen' screenOptions={{ headerStyle: { backgroundColor: Colors.bgColor }, title: '', headerTintColor: Colors.activeColor, headerShadowVisible: false }}>
+          <Stack.Navigator initialRouteName='LoginScreen' screenOptions={{
+            headerStyle: { backgroundColor: Colors.bgColor, height: 50 }
+            , title: '', headerTintColor: Colors.activeColor, headerShadowVisible: false,
+            headerBackTitleStyle: {paddingLeft: 10,}
+          }}>
             < Stack.Screen
               options={{
                 headerShown: false,
@@ -39,7 +43,7 @@ export default function App() {
             <Stack.Screen
               options={{
                 headerShown: false,
-                gestureEnabled: false
+                gestureEnabled: false,
               }}
               name='MainContainer' component={MainContainer} />
           </Stack.Navigator>
