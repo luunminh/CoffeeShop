@@ -3,14 +3,15 @@ import { TextInput, StyleSheet } from 'react-native'
 import Colors from '../../Colors'
 import { isValidEmail, isValidPassword, isValidInput, isValidPhoneNumber } from '../../Validations/Validations'
 
-function Input({ placeholder, passwordCheck, setState, setErrState, inputType }) {
+function Input({ placeholder, passwordCheck, setState, setErrState, inputType, valueState }, ref) {
     return (
         <TextInput style={styles.inputText}
+            value={valueState}
             placeholder={placeholder}
             placeholderTextColor={Colors.textColor}
             secureTextEntry={passwordCheck}
             onChangeText={(text) => {
-                setState(text)
+                setState(text.trim())
                 switch (inputType) {
                     case 'email': {
                         setErrState(isValidEmail(text) ? "" : "Email not in correct format")
@@ -36,7 +37,7 @@ function Input({ placeholder, passwordCheck, setState, setErrState, inputType })
     )
 }
 
-export default React.memo(Input)
+export default React.memo(React.forwardRef(Input))
 
 
 const styles = StyleSheet.create({

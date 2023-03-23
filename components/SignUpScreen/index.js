@@ -9,7 +9,8 @@ import { auth, app } from '../../firebase/config.js'
 import { AuthContext } from '../../Context/AuthProvider.js'
 import { addDocument } from '../../firebase/services.js'
 import { StackActions } from '@react-navigation/native';
-
+import { Toast } from 'react-native-toast-message/lib/src/Toast.js'
+import toastConfig from '../UI/Toast/index.js'
 export default function SignUpScreen({ navigation }) {
 
     const { user, setUser } = useContext(AuthContext)
@@ -49,11 +50,25 @@ export default function SignUpScreen({ navigation }) {
                         StackActions.replace('MainContainer', newUser))
 
                 }).catch(error => {
-                    alert('There are some errors while processing !!!')
+                    // alert('There are some errors while processing !!!')
+                    Toast.show({
+                        type: 'error',
+                        text1: "Sign up messages",
+                        text2: "There are some errors while processing !!!",
+                        autoHide: 'true',
+                        visibilityTime: 2000
+
+                    })
                     console.log(error);
                 })
         } else {
-            alert('Sign up failed!')
+            Toast.show({
+                type: 'error',
+                text1: "Sign up messages",
+                text2: "Sign up failed!",
+                autoHide: 'true',
+                visibilityTime: 2000,
+            })
         }
     }
 
@@ -117,6 +132,8 @@ export default function SignUpScreen({ navigation }) {
             <View style={styles.btnWrap}>
                 <ActiveButton text="Sign up" tranScreen={handleSubmit} />
             </View>
+            <Toast />
+
         </View>
     )
 }

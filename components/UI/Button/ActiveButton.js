@@ -2,7 +2,6 @@ import React from 'react'
 import { TouchableOpacity, Text, StyleSheet } from 'react-native'
 import Colors from '../../Colors'
 function ActiveButton({ text, tranScreen }) {
-    console.log("button re-render");
     return (
         <TouchableOpacity style={styles.btnContainer} onPress={tranScreen}>
             <Text style={styles.colorText}>{text}</Text>
@@ -12,16 +11,16 @@ function ActiveButton({ text, tranScreen }) {
 
 const styles = StyleSheet.create({
     btnContainer: {
-        width: 316,
+        width: '100%',
+        minWidth: 316,
         paddingHorizontal: 20,
-        paddingVertical: 18,
+        paddingVertical: 16,
         backgroundColor: Colors.activeColor,
         borderRadius: 10,
     },
     colorText: {
         textAlign: "center",
         fontSize: 20,
-        fontWeight: 700,
         fontFamily: "Rosarivo"
 
     }
