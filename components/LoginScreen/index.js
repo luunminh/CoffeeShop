@@ -8,7 +8,8 @@ import Input from '../UI/Button/Input.js'
 import { signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth'
 import { auth, app } from '../../firebase/config.js'
 import { AuthContext } from '../../Context/AuthProvider.js'
-
+import { Toast } from 'react-native-toast-message/lib/src/Toast.js'
+import toastConfig from '../UI/Toast/index.js'
 
 export default function LoginScreen({ navigation }) {
 
@@ -24,7 +25,14 @@ export default function LoginScreen({ navigation }) {
     const handlePasswordReset = () => {
         sendPasswordResetEmail(auth, email)
             .then(() => {
-                alert("password reset email has been sent successfully!")
+                // alert("password reset email has been sent successfully!")
+                Toast.show({
+                    type: 'success',
+                    text1: "Reset password messages",
+                    text2: "password reset email has been sent successfully!",
+                    autoHide: 'true',
+                    visibilityTime: 2000,
+                })
             })
             .catch(error => {
                 alert("Your email account is not correct!")
@@ -43,16 +51,31 @@ export default function LoginScreen({ navigation }) {
                 .then((userCredential) => {
                     navigation.navigate('MainContainer')
                 }).catch(error => {
-                    console.log(error);
-                    alert(error)
+                    // console.log(error);
+                    // alert(error)
+                    Toast.show({
+                        type: 'error',
+                        text1: "Error",
+                        text2: "Your email or password is not correct!",
+                        autoHide: 'true',
+                        visibilityTime: 2000
+                    })
                 })
         } else {
-            alert("Email or Password is not correct!")
+            // alert("Email or Password is not correct!")
+            Toast.show({
+                type: 'error',
+                text1: "Error",
+                text2: "Your email or password is not correct!",
+                autoHide: 'true',
+                visibilityTime: 2000
+            })
         }
     }, [errEmail, errPass])
 
     return (
         <View style={styles.container}>
+            <Toast config={toastConfig} />
             <Image
                 style={styles.nameLogo}
                 source={require('../../assets/img/nameLogo.png')}

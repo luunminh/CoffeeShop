@@ -47,50 +47,40 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between"
     },
-    sideMenu: {
-        flex: 1,
-        overflow: "hidden",
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderTopRightRadius: 40,
-        paddingTop: 30,
-        backgroundColor: Colors.sideMenuColor,
-        height: "100%",
-    },
-    scrollContainer: {
-        margin: 0,
-        padding: 0,
-    },
-    typeList: {
-        flex: 1,
-        gap: 30,
-        paddingTop: 10,
-    }
-    , typeItem: {
-        transform: [{ rotate: '-90deg' }],
-        marginVertical: 20,
-        marginHorizontal: -16,
-        // backgroundColor: "#ccc",
-    }
-    , typeItemText: {
-        color: Colors.textColor,
-        width: "100%",
-        textAlign: "center",
-        fontSize: 16,
-        fontFamily: "Rosarivo"
-    }
-    , rightSide: {
+    rightSide: {
         flex: 8,
-        alignItems: "center",
+        // alignItems: "center",
         // backgroundColor: "#ccc",
 
     },
-    listItem : {
+    listItem: {
         flexDirection: "row",
         flexWrap: "wrap",
         gap: 16,
         width: "100%",
-        justifyContent: "center"
+        // justifyContent: "center",
+        // backgroundColor: "#ccc",
+        paddingLeft: 30,
+    },
+    errorContainer: {
+        alignItems: "center",
+        height: 250,
+        width: "90%",
+        justifyContent: "center",
+    },
+    errorText: {
+        textAlign: "center",
+        fontSize: 22,
+        fontFamily: "Rosarivo",
+        width: "60%",
+        color: Colors.textColor
+
+    },
+    errorIcon: {
+        fontSize: 30,
+        fontWeight: 700,
+        color: Colors.textColor,
+        paddingVertical: 10,
     }
 
 
