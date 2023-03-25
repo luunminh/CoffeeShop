@@ -3,14 +3,18 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 // new
 import { useFonts } from 'expo-font';
+
+
 import LoadingScreen from './components/LoadingScreen';
 import LoginScreen from './components/LoginScreen';
 import DetailItem from './components/UI/DetailItem';
 import Colors from "./components/Colors/index";
 import SignUpScreen from './components/SignUpScreen';
+import HomeScreen from './components/Maincontainer/Home';
 import MainContainer from './components/Maincontainer';
 import AuthProvider from './Context/AuthProvider';
 import AppProvider from './Context/AppProvider';
+import UserContainer from './components/Usercontainer';
 export default function App() {
 
 
@@ -40,6 +44,14 @@ export default function App() {
             <Stack.Screen name='LoginScreen' component={LoginScreen} />
             <Stack.Screen name='SignUpScreen' component={SignUpScreen} />
             <Stack.Screen name='DetailItem' component={DetailItem} />
+            <Stack.Screen 
+            options={{
+              headerShown:false,
+              gestureEnabled: false,
+            }}
+            name='UserContainer' component={UserContainer}/>
+            <Stack.Screen name='HomeScreen' component={HomeScreen} />
+
             <Stack.Screen
               options={{
                 headerShown: false,

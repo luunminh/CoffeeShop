@@ -24,5 +24,3 @@ const db = firebase.firestore();
 export { auth, app, db }
 
 export default firebase;
-
-
