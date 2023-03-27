@@ -20,8 +20,6 @@ export default function DetailItem({ route, navigation }) {
 
     useEffect(() => {
         navigation.setOptions({
-            // headerTransparent: true,
-            // headerStyle: {}
             headerLeft: () => (
                 <BackButton goBackFunc={backToPrevPage} />
             )

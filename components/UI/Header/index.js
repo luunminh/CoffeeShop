@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native'
 import UserAvatar from 'react-native-user-avatar-component'
 import Colors from '../../Colors'
-export default function Header({ navigation, user }) {
+export default function Header({navigator ,navigation, user }) {
     const handleUserAvatarClick = () => {
         navigation.navigate('UserContainer');
     }

@@ -12,8 +12,8 @@ export default function AppProvider({ children }) {
     const [coffeeList, setCoffeeList] = useState([])
     const [categories, setCategories] = useState([])
     const [categoriesIndex, setCategoriesIndex] = useState(0)
-
-
+    
+    
     useEffect(() => {
         console.log("reset...");
         let collectionRef = db.collection('coffee')
