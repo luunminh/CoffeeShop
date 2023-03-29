@@ -1,19 +1,29 @@
 import { async } from '@firebase/util';
-import React from 'react'
+import React, { useContext, useMemo } from 'react'
 import { useState, useEffect } from 'react';
 import { auth, db } from '../firebase/config';
 import useFirestore from '../hooks/useFirestore.js'
-
-
+import { AuthContext } from './AuthProvider';
 export const AppContext = React.createContext();
 
 export default function AppProvider({ children }) {
+    // const { user } = useContext(AuthContext)
     const [isReload, setIsReload] = useState(false)
     const [coffeeList, setCoffeeList] = useState([])
     const [categories, setCategories] = useState([])
     const [categoriesIndex, setCategoriesIndex] = useState(0)
 
 
+
+    // const favouriteCondition = React.useMemo(() => {
+    //     return {
+    //         fieldName: 'userId',
+    //         operator: '==',
+    //         compareValue: user.uid,
+    //     };
+    // }, [user]);
+
+    // const favouriteList = useFirestore('favourite', favouriteCondition)
     useEffect(() => {
         console.log("reset...");
         let collectionRef = db.collection('coffee')
