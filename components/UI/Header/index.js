@@ -14,6 +14,7 @@ function Header({ navigation, reloadFunc }) {
             <TouchableOpacity style={styles.leftSide}
                 onPress={() => {
                     reloadFunc(prev => !prev)
+                    console.log("reload")
                     Toast.show({
                         type: 'success',
                         text1: "Reload your data",

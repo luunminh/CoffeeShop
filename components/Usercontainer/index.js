@@ -11,8 +11,12 @@ import UserHeader from "../UI/UserHeader";
 import { AppContext } from '../../Context/AppProvider'
 import { useFocusEffect } from "@react-navigation/native";
 import ActiveButton from '../UI/Button/ActiveButton'
+import { auth } from "../../firebase/config";
+import { AuthContext } from "../../Context/AuthProvider";
+import { signOut } from 'firebase/auth'
 
 export default function UserContainer({ navigation }) {
+    const { setUser } = useContext(AuthContext)
     const { setIsReload } = useContext(AppContext)
 
     useFocusEffect(
@@ -42,7 +46,12 @@ export default function UserContainer({ navigation }) {
 
 
     const transToLoginScreen = useCallback(() => {
-        navigation.navigate('LoginScreen')
+        signOut(auth).then(() => {
+            navigation.navigate('LoginScreen')
+        }).catch(error => {
+            console.log(error)
+            alert(error)
+        })
     }, [navigation])
 
     return (

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState , useMemo} from 'react'
 import { Text, View, TouchableOpacity, Image, TextInput, ScrollView } from 'react-native'
 import styles from './styles'
 import Header from '../../UI/Header'
@@ -9,18 +9,23 @@ import SideBar from '../../UI/SideBar'
 
 export default function FavouriteScreen({ navigation }) {
 
-    const { coffeeList, setCoffeeList, isReload, setIsReload } = useContext(AppContext)
+    const { coffeeList, setCoffeeList, isReload,
+        setIsReload, favouriteList, setIsFavouriteList } = useContext(AppContext)
     const [searchInput, setSearchInput] = useState('')
     const [coffeeSearchList, setCoffeeSearchList] = useState(coffeeList)
+    const favList = useMemo(() => {
+        const rs = favouriteList.map((item) => item.coffeeId)
+        return rs
+    }, [favouriteList])
     useEffect(() => {
         setCoffeeSearchList(() => {
             let rs = coffeeList.filter((item) => {
-                return (item.name.toLowerCase().includes(searchInput.trim().toLowerCase()) && item.isfavourite)
+                return (item.name.toLowerCase().includes(searchInput.trim().toLowerCase()) && favList.includes(item.id))
             })
             return rs;
         })
 
-    }, [searchInput, coffeeList])
+    }, [searchInput, coffeeList, favouriteList])
 
     useEffect(() => {
         if (searchInput.trim().length > 0) {
@@ -32,7 +37,7 @@ export default function FavouriteScreen({ navigation }) {
     return (
         <View style={styles.container}>
             <View style={styles.firstContainer}>
-                <Header navigator={navigator} user={undefined} reloadFunc={setIsReload} />
+                <Header navigation={navigation} reloadFunc={setIsReload} />
                 <View style={styles.searchWrap}>
                     <Image
                         style={styles.searchIcon}
@@ -59,7 +64,7 @@ export default function FavouriteScreen({ navigation }) {
                                 ))) :
                                 (
                                     <View style={styles.errorContainer}>
-                                        <Text style={styles.errorText}>{`We couldn't find coffee name "${searchInput}"`}</Text>
+                                        <Text style={styles.errorText}>{`We couldn't find a coffee ${searchInput}`}</Text>
                                     </View>
                                 )
                             }

@@ -1,18 +1,20 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useState, useMemo } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
 import { db } from '../../../firebase/config';
 import { doc, setDoc, updateDoc } from 'firebase/firestore'
 import Colors from '../../Colors'
 import ActiveButton from '../Button/ActiveButton'
-
+import { AuthContext } from '../../../Context/AuthProvider';
 import BackButton from './BackButton';
 import { AppContext } from '../../../Context/AppProvider';
 import { Toast } from 'react-native-toast-message/lib/src/Toast.js'
+import { addDocument, delDocument } from '../../../firebase/services';
 export default function DetailItem({ route, navigation }) {
-    const { coffeeList, setCoffeeList } = useContext(AppContext)
+    const { user } = useContext(AuthContext)
+    const { coffeeList, setCoffeeList, favouriteList, setIsFavouriteList } = useContext(AppContext)
     const { elm } = route.params
-    const [favourite, setIsFavourite] = useState(elm.isfavourite)
+    const [favourite, setIsFavourite] = useState(false)
     const [isReload, setIsReload] = useState(false)
     const backToPrevPage = useCallback(() => {
         navigation.goBack()
@@ -27,39 +29,12 @@ export default function DetailItem({ route, navigation }) {
         })
     }, [])
 
-
     useEffect(() => {
-        async function updateData() {
-            if (isReload) {
-                const docRef = doc(db, 'coffee', elm.id)
-                await setDoc(docRef, elm);
-                await updateDoc(docRef, {
-                    isfavourite: favourite
-                });
-                if (favourite) {
-                    Toast.show({
-                        type: 'success',
-                        text1: "Added to your favorites",
-                        // text2: "There are some errors while processing !!!",
-                        autoHide: 'true',
-                        visibilityTime: 1000
-                    })
-                } else {
-                    Toast.show({
-                        type: 'success',
-                        text1: "Removes to your favorites",
-                        // text2: "There are some errors while processing !!!",
-                        autoHide: 'true',
-                        visibilityTime: 1000
+        let favList = favouriteList.map((item) => item.coffeeId)
+        setIsFavourite(favList.includes(elm.id))
+    }, [favourite, favouriteList])
 
-                    })
-                }
-                setIsReload(false)
-            }
-        }
-        updateData()
 
-    }, [isReload])
 
     return (
         <View style={styles.container}>
@@ -71,16 +46,31 @@ export default function DetailItem({ route, navigation }) {
                 <Text style={styles.itemName}>{elm.name}</Text>
                 <TouchableOpacity style={styles.favouriteWrap}
                     onPress={() => {
-                        const arr = coffeeList.map((item) => {
-                            if (item.id === elm.id) {
-                                let newItem = { ...item, isfavourite: !elm.isfavourite }
-                                return newItem
-                            }
-                            return item
-                        });
+                        if (favourite) {
+                            const rs = favouriteList.find(item => item.coffeeId === elm.id)
+                            delDocument('favourite', rs.id)
+                            Toast.show({
+                                type: 'success',
+                                text1: "Removes to your favorites",
+                                // text2: "There are some errors while processing !!!",
+                                autoHide: 'true',
+                                visibilityTime: 1000
+                            })
+                        } else {
+                            addDocument('favourite', {
+                                userId: user.uid,
+                                coffeeId: elm.id,
+                            })
+                            Toast.show({
+                                type: 'success',
+                                text1: "Added to your favorites",
+                                // text2: "There are some errors while processing !!!",
+                                autoHide: 'true',
+                                visibilityTime: 1000
+                            })
+                        }
+                        setIsReload(prev => !prev)
                         setIsFavourite(prev => !prev)
-                        setIsReload(true)
-                        setCoffeeList(arr)
                     }}
                 >
                     <Ionicons name={`${(favourite) ? 'heart' : 'heart-outline'}`} size={30} color={`${favourite ? Colors.redColor : Colors.activeColor}`} />

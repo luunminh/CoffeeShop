@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
         gap: 8,
         width: "100%",
         overflow: "hidden",
-        paddingHorizontal: 20,
+        paddingHorizontal: 22,
         paddingBottom: 140,
     },
     firstContainer: {
@@ -32,16 +32,16 @@ const styles = StyleSheet.create({
     },
     secondContainer: {
         flex: 1,
-        height: "100%",
+        height: "90%",
         flexDirection: "row",
         flexWrap: 'wrap',
         justifyContent: "space-between",
-        paddingRight: 12,
         width: '100%',
     },
 
     row: {
         flex: 1,
+        width: "100%",
         flexDirection: 'row',
         alignItems: 'center',
         paddingLeft: 20,
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     },
     rowTitle: {
         fontFamily: 'Rosarivo',
-        fontSize: 18,
+        fontSize: 16,
         fontWeight: '400',
         color: '#FFF',
     },
