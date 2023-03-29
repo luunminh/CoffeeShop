@@ -39,13 +39,6 @@ export default function UserContainer({ navigation }) {
     }, [navigation])
 
 
-    // useEffect(() => {
-    //     navigation.setOptions({
-    //         headerLeft: () => (
-    //             <BackButton goBackFunc={backToPrevPage} />
-    //         )
-    //     })
-    // }, [])
 
 
     const transToLoginScreen = useCallback(() => {
