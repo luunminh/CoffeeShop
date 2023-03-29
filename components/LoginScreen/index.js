@@ -10,16 +10,40 @@ import { auth, app } from '../../firebase/config.js'
 import { AuthContext } from '../../Context/AuthProvider.js'
 import { Toast } from 'react-native-toast-message/lib/src/Toast.js'
 import toastConfig from '../UI/Toast/index.js'
-
+// import useFirestore from '../../hooks/useFirestore.js'
+import { db } from '../../firebase/config.js'
 export default function LoginScreen({ navigation }) {
 
 
-
+    const { setUser } = useContext(AuthContext)
     // state
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errEmail, setErrEmail] = useState(true)
     const [errPass, setErrPass] = useState(true)
+
+
+    const fetchData = (collection, condition) => {
+        let collectionRef = db.collection(collection)
+        collectionRef = collectionRef.where(
+            condition.fieldName,
+            condition.operator,
+            condition.compareValue
+        );
+        const unsubscribe = collectionRef.onSnapshot((snapshot) => {
+            const newDocs = snapshot.docs.map((doc) => ({
+                ...doc.data(),
+                id: doc.id,
+            }));
+            const { uid, email: userEmail, phoneNumber, photoURL, displayName } = newDocs[0]
+            const data = { uid, userEmail, phoneNumber, photoURL, displayName }
+            console.log(data);
+            setUser(() => {
+                return { uid, userEmail, phoneNumber, photoURL, displayName }
+            })
+            return newDocs
+        });
+    }
 
 
     const handlePasswordReset = () => {
@@ -49,6 +73,11 @@ export default function LoginScreen({ navigation }) {
         if (errEmail.length === 0 && errPass.length === 0) {
             signInWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
+                    fetchData('users', {
+                        fieldName: 'email',
+                        operator: '==',
+                        compareValue: email.trim(),
+                    })
                     navigation.navigate('MainContainer')
                 }).catch(error => {
                     // console.log(error);

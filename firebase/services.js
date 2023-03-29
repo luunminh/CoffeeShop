@@ -10,3 +10,4 @@ export const addDocument = (collection, data) => {
         createdAt: firebase.firestore.FieldValue.serverTimestamp(),
     });
 };
+
