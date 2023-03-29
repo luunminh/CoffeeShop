@@ -3,7 +3,10 @@ import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native'
 import UserAvatar from 'react-native-user-avatar-component'
 import Colors from '../../Colors'
 import { Toast } from 'react-native-toast-message/lib/src/Toast'
-function Header({ navigation, user, reloadFunc }) {
+function Header({ navigation, user, reloadFunc, navigator }) {
+    const handleUserAvatarClick = () => {
+        navigation.navigate('UserContainer');
+    }
     return (
         <View style={styles.container}>
             <TouchableOpacity style={styles.leftSide}
@@ -24,7 +27,7 @@ function Header({ navigation, user, reloadFunc }) {
                     source={require('../../../assets/img/nameLogo.png')}
                 />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.rightSide}>
+            <TouchableOpacity style={styles.rightSide} onPress={handleUserAvatarClick}>
                 <UserAvatar size="48" color={Colors.textColor} name={`${(user) ? user.photoURL : 'Son Hoang'}`} src={`${(user) ? user.photoURL : ''}`} />
             </TouchableOpacity>
             <Toast />

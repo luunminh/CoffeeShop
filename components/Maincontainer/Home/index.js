@@ -31,12 +31,10 @@ export default function HomeScreen({ navigation }) {
             setSearchInput('');
         }
     }, [isReload])
-
-
     return (
         <View style={styles.container}>
             <View style={styles.firstContainer}>
-                <Header navigator={navigator} user={undefined} reloadFunc={setIsReload} />
+                <Header navigation={navigation} user={undefined} reloadFunc={setIsReload} />
                 <View style={styles.searchWrap}>
                     <Image
                         style={styles.searchIcon}
@@ -47,8 +45,7 @@ export default function HomeScreen({ navigation }) {
                         placeholder="Search Coffee...."
                         setState={setSearchInput}
                         valueState={searchInput}
-                    // setErrState={setErrEmail}
-                    // inputType={"email"}
+                    
                     />
                 </View>
             </View>

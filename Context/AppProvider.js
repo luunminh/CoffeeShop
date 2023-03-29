@@ -24,6 +24,8 @@ export default function AppProvider({ children }) {
     // }, [user]);
 
     // const favouriteList = useFirestore('favourite', favouriteCondition)
+
+
     useEffect(() => {
         console.log("reset...");
         let collectionRef = db.collection('coffee')

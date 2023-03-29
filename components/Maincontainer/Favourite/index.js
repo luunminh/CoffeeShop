@@ -6,6 +6,7 @@ import Input from '../../UI/Button/Input'
 import Item from '../../UI/Item'
 import { AppContext } from '../../../Context/AppProvider'
 import SideBar from '../../UI/SideBar'
+
 export default function FavouriteScreen({ navigation }) {
 
     const { coffeeList, setCoffeeList, isReload, setIsReload } = useContext(AppContext)

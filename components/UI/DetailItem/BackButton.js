@@ -25,8 +25,6 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         marginLeft: -10,
-        // marginTop: 20,
-        borderRadius: 999,
-        // backgroundColor: Colors.sideMenuColor
+        borderRadius: 99,
     }
 })

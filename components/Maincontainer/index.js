@@ -20,7 +20,7 @@ export default function MainContainer({ navigation }) {
                 tabBarIcon: ({ focused, color, size }) => {
                     let iconName;
                     let rn = route.name;
-
+                        
 
                     if (rn === homeName) {
                         iconName = 'md-home-sharp'
