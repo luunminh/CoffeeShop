@@ -26,17 +26,17 @@ export default function UserHeader({ navigation, navigator, user, goBackFunc, re
     //     }, []),
     // );
     return (
-    <View style ={styles.container}>
+        <View style={styles.container}>
             <View style={styles.backContainer}>
-                    <TouchableOpacity
+                <TouchableOpacity
                     onPress={goBackFunc}
-                    >
+                >
                     <Image
-                         style={styles.backIcon}
+                        style={styles.backIcon}
                         source={require('../../../assets/img/back.png')}
                     />
-                    </TouchableOpacity>
-                </View>
+                </TouchableOpacity>
+            </View>
             <TouchableOpacity style={styles.leftSide}>
                 <UserAvatar size="85" color={Colors.textColor} name={`${(user) ? user.photoURL : 'Son Hoang'}`} src={`${(user) ? user.photoURL : ''}`} />
             </TouchableOpacity>
@@ -49,39 +49,41 @@ export default function UserHeader({ navigation, navigator, user, goBackFunc, re
 }
 
 const styles = StyleSheet.create({
-    
+
     container: {
         flexDirection: "row",
         alignItems: 'center',
         justifyContent: "space-between",
-        paddingHorizontal:20,
-        paddingTop:40,
+        paddingHorizontal: 18,
+        paddingTop: 40,
         width: "100%",
         position: 'relative'
     },
     leftSide:
     {
-        paddingLeft:3,
-        marginTop:50,
-        paddingHorizontal:15,
+        // backgroundColor: 'red',
+        // paddingLeft: 3,
+        marginTop: 50,
+        // paddingHorizontal: 15,
     },
     rightSide: {
-        paddingRight:50,
-        marginTop:40,
-        paddingHorizontal:20,
+        // paddingRight: 50,
+        marginTop: 50,
+        paddingHorizontal: 20,
+        alignItems: 'center'
     },
-    titlesTitle:{
-        
-        fontFamily:'Rosarivo',
-        fontSize:15,
+    titlesTitle: {
+
+        fontFamily: 'Rosarivo',
+        fontSize: 15,
         color: '#FFFFFF'
     },
-    titlesSubtitle:{
-        marginBottom: 5 ,
-        fontFamily:'Rosarivo',
-        fontSize:25,
+    titlesSubtitle: {
+        marginBottom: 5,
+        fontFamily: 'Rosarivo',
+        fontSize: 25,
         color: '#EFE3C8'
-        
+
     },
     backContainer: {
         height: 40,
@@ -91,11 +93,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignContent: 'center',
         paddingTop: 0,
-        top: 25,
+        top: 28,
+        paddingLeft: -5,
     },
     backIcon: {
-        width: 20,
-        height: 20,
+        width: 18,
+        height: 18,
         width: -5,
         resizeMode: 'contain',
     },

@@ -10,6 +10,7 @@ import { auth, app } from '../../firebase/config.js'
 import { AuthContext } from '../../Context/AuthProvider.js'
 import { Toast } from 'react-native-toast-message/lib/src/Toast.js'
 import toastConfig from '../UI/Toast/index.js'
+import { db } from '../../firebase/config.js'
 export default function LoginScreen({ navigation }) {
     const { setUser } = useContext(AuthContext)
     // state
@@ -78,7 +79,7 @@ export default function LoginScreen({ navigation }) {
                     })
                     navigation.navigate('MainContainer')
                 }).catch(error => {
-                    // console.log(error);
+                    console.log(error);
                     // alert(error)
                     Toast.show({
                         type: 'error',
