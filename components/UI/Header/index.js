@@ -2,7 +2,8 @@ import React from 'react'
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native'
 import UserAvatar from 'react-native-user-avatar-component'
 import Colors from '../../Colors'
-export default function Header({navigator ,navigation, user, reloadFunc }) {
+import { Toast } from 'react-native-toast-message/lib/src/Toast'
+function Header({ navigation, user, reloadFunc, navigator }) {
     const handleUserAvatarClick = () => {
         navigation.navigate('UserContainer');
     }
@@ -29,9 +30,11 @@ export default function Header({navigator ,navigation, user, reloadFunc }) {
             <TouchableOpacity style={styles.rightSide} onPress={handleUserAvatarClick}>
                 <UserAvatar size="48" color={Colors.textColor} name={`${(user) ? user.photoURL : 'Son Hoang'}`} src={`${(user) ? user.photoURL : ''}`} />
             </TouchableOpacity>
+            <Toast />
         </View>
     )
 }
+export default React.memo(Header)
 
 const styles = StyleSheet.create({
     container: {

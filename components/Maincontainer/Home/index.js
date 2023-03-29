@@ -34,7 +34,7 @@ export default function HomeScreen({ navigation }) {
     return (
         <View style={styles.container}>
             <View style={styles.firstContainer}>
-                <Header navigation= {navigation }/>
+                <Header navigation={navigation} user={undefined} reloadFunc={setIsReload} />
                 <View style={styles.searchWrap}>
                     <Image
                         style={styles.searchIcon}
