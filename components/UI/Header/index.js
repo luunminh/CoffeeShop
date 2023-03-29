@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native'
 import UserAvatar from 'react-native-user-avatar-component'
 import Colors from '../../Colors'
 import { Toast } from 'react-native-toast-message/lib/src/Toast'
-function Header({ navigation, user, reloadFunc, navigator }) {
+function Header({ navigation, user, reloadFunc}) {
     const handleUserAvatarClick = () => {
         navigation.navigate('UserContainer');
     }

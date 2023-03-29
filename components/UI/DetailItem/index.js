@@ -5,6 +5,7 @@ import { db } from '../../../firebase/config';
 import { doc, setDoc, updateDoc } from 'firebase/firestore'
 import Colors from '../../Colors'
 import ActiveButton from '../Button/ActiveButton'
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import BackButton from './BackButton';
 import { AppContext } from '../../../Context/AppProvider';
@@ -19,13 +20,14 @@ export default function DetailItem({ route, navigation }) {
     }, [navigation])
 
 
-    useEffect(() => {
-        navigation.setOptions({
-            headerLeft: () => (
-                <BackButton goBackFunc={backToPrevPage} />
-            )
-        })
-    }, [])
+    // useEffect(() => {
+    //     navigation.setOptions({
+    //         headerTitle: () => (
+    //             <BackButton goBackFunc={backToPrevPage} />
+    //         )
+            
+    //     })
+    // }, [navigation]);
 
 
     useEffect(() => {

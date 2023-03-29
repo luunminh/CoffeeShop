@@ -5,26 +5,9 @@ import Colors from '../../Colors'
 
 //import { useFocusEffect } from "@react-navigation/native";
 
-export default function UserHeader({ navigation, navigator, user, goBackFunc, reloadFunc }) {
+export default function UserHeader({ navigator, user, goBackFunc }) {
 
-    // useFocusEffect(
-    //     React.useCallback(() => {
-    //         const onBackPress = () => {
-    //             navigation.navigate('HomeScreen');
-    //             return true;
-    //         };
-    //         BackHandler.addEventListener(
-    //             'hardwareBackPress',
-    //             onBackPress
-    //         );
-    //         return () => {
-    //             BackHandler.removeEventListener(
-    //                 'hardwareBackPress',
-    //                 onBackPress
-    //             );
-    //         };
-    //     }, []),
-    // );
+
     return (
     <View style ={styles.container}>
             <View style={styles.backContainer}>

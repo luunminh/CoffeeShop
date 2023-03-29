@@ -6,6 +6,7 @@ import Input from '../../UI/Button/Input'
 import Item from '../../UI/Item'
 import { AppContext } from '../../../Context/AppProvider'
 import SideBar from '../../UI/SideBar'
+
 export default function HomeScreen({ navigation }) {
 
     const { coffeeList, setCoffeeList, isReload, setIsReload, categories, categoriesIndex } = useContext(AppContext)
@@ -31,10 +32,12 @@ export default function HomeScreen({ navigation }) {
             setSearchInput('');
         }
     }, [isReload])
+
+    
     return (
         <View style={styles.container}>
             <View style={styles.firstContainer}>
-                <Header navigation={navigation} user={undefined} reloadFunc={setIsReload} />
+                <Header navigation={navigation} reloadFunc={setIsReload} />
                 <View style={styles.searchWrap}>
                     <Image
                         style={styles.searchIcon}
