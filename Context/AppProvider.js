@@ -36,7 +36,7 @@ export default function AppProvider({ children }) {
         });
 
         return unsubscribe;
-    }, [isReload])
+    }, [isReload, user])
 
 
     useEffect(() => {
