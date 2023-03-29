@@ -10,10 +10,9 @@ import { auth, app } from '../../firebase/config.js'
 import { AuthContext } from '../../Context/AuthProvider.js'
 import { Toast } from 'react-native-toast-message/lib/src/Toast.js'
 import toastConfig from '../UI/Toast/index.js'
-
+import useFirestore from '../../hooks/useFirestore.js'
 export default function LoginScreen({ navigation }) {
-
-
+    // const { setUser } = useContext(AuthContext)
 
     // state
     const [email, setEmail] = useState('');
@@ -21,6 +20,14 @@ export default function LoginScreen({ navigation }) {
     const [errEmail, setErrEmail] = useState(true)
     const [errPass, setErrPass] = useState(true)
 
+
+    // const userCondition = React.useMemo(() => {
+    //     return {
+    //         fieldName: 'users',
+    //         operator: '==',
+    //         compareValue: email,
+    //     };
+    // }, [email])
 
     const handlePasswordReset = () => {
         sendPasswordResetEmail(auth, email)
@@ -49,6 +56,20 @@ export default function LoginScreen({ navigation }) {
         if (errEmail.length === 0 && errPass.length === 0) {
             signInWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
+                    // const loginUser = useFirestore('users', {
+                    //     fieldName: 'users',
+                    //     operator: '==',
+                    //     compareValue: email,
+                    // })
+                    // const rs = {
+                    //     uid: loginUser.uid,
+                    //     email: loginUser.email,
+                    //     phoneNumber: loginUser.phoneNumber,
+                    //     photoURL: loginUser.photoURL,
+                    //     displayName: phoneNumber.displayName
+                    // }
+                    // console.log(rs)
+                    // setUser(rs)
                     navigation.navigate('MainContainer')
                 }).catch(error => {
                     // console.log(error);
