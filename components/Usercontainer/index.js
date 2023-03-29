@@ -1,4 +1,4 @@
-import React,{useContext,useCallback} from "react";
+import React,{useContext,useCallback,useEffect} from "react";
 import { View, Text, TouchableOpacity,ScrollView ,Image, StyleSheet, BackHandler } from "react-native";
 import Colors from "../Colors";
 import UserInfoScreen from "./UserInfo";
@@ -32,7 +32,20 @@ export default function UserContainer({ navigation}) {
                 );
             };
         },[]),
-    );
+     );
+
+    const backToPrevPage = useCallback(() => {
+        navigation.goBack()
+    }, [navigation])
+
+
+    // useEffect(() => {
+    //     navigation.setOptions({
+    //         headerLeft: () => (
+    //             <BackButton goBackFunc={backToPrevPage} />
+    //         )
+    //     })
+    // }, [])
 
 
     const transToLoginScreen = useCallback(() => {
@@ -42,7 +55,7 @@ export default function UserContainer({ navigation}) {
     return (
         <View style={styles.container}>
             <View style={styles.firstContainer}>
-            <View style={styles.backContainer}>
+            {/* <View style={styles.backContainer}>
                     <TouchableOpacity
                     onPress={()=>navigation.goBack()}
                     >
@@ -51,50 +64,50 @@ export default function UserContainer({ navigation}) {
                         source={require('../../assets/img/back.png')}
                     />
                     </TouchableOpacity>
-                </View>
-                <UserHeader navigator={navigator} user={undefined} reloadFunc={setIsReload} />
+                </View> */}
+                <UserHeader navigator={navigator} user={undefined} reloadFunc={setIsReload}  goBackFunc={backToPrevPage} />
             </View>
             <View style={styles.secondContainer}>
                 <ScrollView>
                 <View style={styles.rowWrapper}>
                     <View style={styles.row}>
                         <TouchableOpacity onPress={() => navigation.navigate("UserInfo")}>
-                            <Text style={styles.rowTitle}>Cài đặt tài khoản</Text>
+                            <Text style={styles.rowTitle}>Account Settings</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
                 <View style={styles.rowWrapper}>
                     <View style={styles.row}>
                         <TouchableOpacity onPress={() => navigation.navigate("BillHistory")}>
-                            <Text style={styles.rowTitle}>Lịch sử đơn hàng</Text>
+                            <Text style={styles.rowTitle}>Bill History</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
                 <View style={styles.rowWrapper}>
                     <View style={styles.row}>
                         <TouchableOpacity onPress={() => navigation.navigate("AboutUs")}>
-                            <Text style={styles.rowTitle}>Về chúng tôi</Text>
+                            <Text style={styles.rowTitle}>About Us</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
                 <View style={styles.rowWrapper}>
                     <View style={styles.row}>
                         <TouchableOpacity onPress={() => navigation.navigate("Contact")}>
-                            <Text style={styles.rowTitle}>Liên hệ</Text>
+                            <Text style={styles.rowTitle}>Contact</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
                 <View style={styles.rowWrapper}>
                     <View style={styles.row}>
                         <TouchableOpacity onPress={() => navigation.navigate("TermOfUse")}>
-                            <Text style={styles.rowTitle}>Điều khoản sử dụng</Text>
+                            <Text style={styles.rowTitle}>Term Of Use</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
                 </ScrollView>
                 
             </View>
-            <ActiveButton text='Đăng xuất' tranScreen={transToLoginScreen} />
+            <ActiveButton text='Sign out' tranScreen={transToLoginScreen} />
         </View>
     );
 }

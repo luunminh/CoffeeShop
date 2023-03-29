@@ -48,6 +48,10 @@ const styles = StyleSheet.create({
         paddingRight: 20,
         paddingTop: 14,
         paddingBottom: 15,
+        borderStyle:"dashed",
+        borderColor:"#4D444D",
+        borderTopWidth:1,
+        borderBottomWidth:1,
     },
     rowWrapper: {
         width: "100%",

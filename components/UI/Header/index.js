@@ -2,13 +2,25 @@ import React from 'react'
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native'
 import UserAvatar from 'react-native-user-avatar-component'
 import Colors from '../../Colors'
-export default function Header({navigator ,navigation, user }) {
+export default function Header({navigator ,navigation, user, reloadFunc }) {
     const handleUserAvatarClick = () => {
         navigation.navigate('UserContainer');
     }
     return (
         <View style={styles.container}>
-            <TouchableOpacity style={styles.leftSide}>
+            <TouchableOpacity style={styles.leftSide}
+                onPress={() => {
+                    reloadFunc(prev => !prev)
+                    Toast.show({
+                        type: 'success',
+                        text1: "Reload your data",
+                        // text2: "There are some errors while processing !!!",
+                        autoHide: 'true',
+                        visibilityTime: 1000
+
+                    })
+                }}
+            >
                 <Image
                     style={styles.nameLogo}
                     source={require('../../../assets/img/nameLogo.png')}

@@ -1,10 +1,42 @@
-import React from 'react'
-import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native'
+import React, { useCallback } from 'react'
+import { View, Text, TouchableOpacity, StyleSheet, Image, BackHandler } from 'react-native'
 import UserAvatar from 'react-native-user-avatar-component'
 import Colors from '../../Colors'
-export default function UserHeader({ navigator, user }) {
+
+//import { useFocusEffect } from "@react-navigation/native";
+
+export default function UserHeader({ navigation, navigator, user, goBackFunc, reloadFunc }) {
+
+    // useFocusEffect(
+    //     React.useCallback(() => {
+    //         const onBackPress = () => {
+    //             navigation.navigate('HomeScreen');
+    //             return true;
+    //         };
+    //         BackHandler.addEventListener(
+    //             'hardwareBackPress',
+    //             onBackPress
+    //         );
+    //         return () => {
+    //             BackHandler.removeEventListener(
+    //                 'hardwareBackPress',
+    //                 onBackPress
+    //             );
+    //         };
+    //     }, []),
+    // );
     return (
     <View style ={styles.container}>
+            <View style={styles.backContainer}>
+                    <TouchableOpacity
+                    onPress={goBackFunc}
+                    >
+                    <Image
+                         style={styles.backIcon}
+                        source={require('../../../assets/img/back.png')}
+                    />
+                    </TouchableOpacity>
+                </View>
             <TouchableOpacity style={styles.leftSide}>
                 <UserAvatar size="85" color={Colors.textColor} name={`${(user) ? user.photoURL : 'Son Hoang'}`} src={`${(user) ? user.photoURL : ''}`} />
             </TouchableOpacity>
@@ -50,5 +82,21 @@ const styles = StyleSheet.create({
         fontSize:25,
         color: '#EFE3C8'
         
-    }
+    },
+    backContainer: {
+        height: 40,
+        width: 40,
+        position: 'absolute',
+        borderRadius: 99,
+        justifyContent: 'center',
+        alignContent: 'center',
+        paddingTop: 0,
+        top: 25,
+    },
+    backIcon: {
+        width: 20,
+        height: 20,
+        width: -5,
+        resizeMode: 'contain',
+    },
 })

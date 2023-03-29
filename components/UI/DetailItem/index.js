@@ -5,7 +5,8 @@ import { db } from '../../../firebase/config';
 import { doc, setDoc, updateDoc } from 'firebase/firestore'
 import Colors from '../../Colors'
 import ActiveButton from '../Button/ActiveButton'
-import BackButton from './BackButton'
+
+import BackButton from './BackButton';
 import { AppContext } from '../../../Context/AppProvider';
 import { Toast } from 'react-native-toast-message/lib/src/Toast.js'
 export default function DetailItem({ route, navigation }) {
