@@ -1,30 +1,11 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useContext } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet, Image, BackHandler } from 'react-native'
 import UserAvatar from 'react-native-user-avatar-component'
 import Colors from '../../Colors'
+import { AuthContext } from '../../../Context/AuthProvider'
+export default function UserHeader({ navigation, goBackFunc, reloadFunc }) {
+    const { user } = useContext(AuthContext)
 
-//import { useFocusEffect } from "@react-navigation/native";
-
-export default function UserHeader({ navigation, navigator, user, goBackFunc, reloadFunc }) {
-
-    // useFocusEffect(
-    //     React.useCallback(() => {
-    //         const onBackPress = () => {
-    //             navigation.navigate('HomeScreen');
-    //             return true;
-    //         };
-    //         BackHandler.addEventListener(
-    //             'hardwareBackPress',
-    //             onBackPress
-    //         );
-    //         return () => {
-    //             BackHandler.removeEventListener(
-    //                 'hardwareBackPress',
-    //                 onBackPress
-    //             );
-    //         };
-    //     }, []),
-    // );
     return (
         <View style={styles.container}>
             <View style={styles.backContainer}>
@@ -37,12 +18,18 @@ export default function UserHeader({ navigation, navigator, user, goBackFunc, re
                     />
                 </TouchableOpacity>
             </View>
-            <TouchableOpacity style={styles.leftSide}>
-                <UserAvatar size="85" color={Colors.textColor} name={`${(user) ? user.photoURL : 'Son Hoang'}`} src={`${(user) ? user.photoURL : ''}`} />
-            </TouchableOpacity>
-            <View style={styles.rightSide} >
-                <Text style={styles.titlesSubtitle}>Ngô Văn Toàn</Text>
-                <Text style={styles.titlesTitle}>Đổi avatar</Text>
+            <View style={styles.userWrap}>
+                <TouchableOpacity style={styles.leftSide}>
+                    <View style={styles.avaBorder}>
+                        <UserAvatar size="88" color={Colors.textColor} name={`${(user.photoURL) ? user.photoURL : user.displayName}`} src={`${(user.photoURL) ? user.photoURL : ''}`} />
+                    </View>
+                </TouchableOpacity>
+                <View style={styles.rightSide} >
+                    <Text style={styles.titlesSubtitle}>{user.displayName}</Text>
+                    <TouchableOpacity>
+                        <Text style={styles.titlesTitle}>Change avatar</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         </View>
     )
@@ -59,12 +46,25 @@ const styles = StyleSheet.create({
         width: "100%",
         position: 'relative'
     },
+    userWrap: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        gap: 30,
+    },
     leftSide:
     {
         // backgroundColor: 'red',
         // paddingLeft: 3,
         marginTop: 50,
         // paddingHorizontal: 15,
+    },
+    avaBorder: {
+        padding: 3,
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: 99,
+        backgroundColor: Colors.activeColor,
     },
     rightSide: {
         // paddingRight: 50,

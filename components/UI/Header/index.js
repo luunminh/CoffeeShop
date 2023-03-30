@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native'
 import UserAvatar from 'react-native-user-avatar-component'
 import Colors from '../../Colors'
 import { Toast } from 'react-native-toast-message/lib/src/Toast'
-function Header({ navigation, user, reloadFunc, navigator }) {
+import { AuthContext } from '../../../Context/AuthProvider'
+function Header({ navigation, reloadFunc }) {
+    const { user } = useContext(AuthContext)
     const handleUserAvatarClick = () => {
         navigation.navigate('UserContainer');
     }
@@ -12,6 +14,7 @@ function Header({ navigation, user, reloadFunc, navigator }) {
             <TouchableOpacity style={styles.leftSide}
                 onPress={() => {
                     reloadFunc(prev => !prev)
+                    console.log("reload")
                     Toast.show({
                         type: 'success',
                         text1: "Reload your data",
@@ -28,7 +31,7 @@ function Header({ navigation, user, reloadFunc, navigator }) {
                 />
             </TouchableOpacity>
             <TouchableOpacity style={styles.rightSide} onPress={handleUserAvatarClick}>
-                <UserAvatar size="48" color={Colors.textColor} name={`${(user) ? user.photoURL : 'Son Hoang'}`} src={`${(user) ? user.photoURL : ''}`} />
+                <UserAvatar size="48" color={Colors.textColor} name={`${(user.photoURL) ? user.photoURL : user.displayName}`} src={`${(user.photoURL) ? user.photoURL : ''}`} />
             </TouchableOpacity>
             <Toast />
         </View>

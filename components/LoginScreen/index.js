@@ -35,7 +35,7 @@ export default function LoginScreen({ navigation }) {
             }));
             const { uid, email: userEmail, phoneNumber, photoURL, displayName } = newDocs[0]
             const data = { uid, userEmail, phoneNumber, photoURL, displayName }
-            console.log(data);
+            // console.log(data);
             setUser(() => {
                 return { uid, userEmail, phoneNumber, photoURL, displayName }
             })
@@ -77,6 +77,8 @@ export default function LoginScreen({ navigation }) {
                         operator: '==',
                         compareValue: email.trim(),
                     })
+                    setEmail('')
+                    setPassword('')
                     navigation.navigate('MainContainer')
                 }).catch(error => {
                     console.log(error);
