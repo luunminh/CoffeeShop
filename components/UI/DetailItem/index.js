@@ -30,6 +30,7 @@ export default function DetailItem({ route, navigation }) {
     // }, [navigation]);
 
 
+
     useEffect(() => {
         async function updateData() {
             if (isReload) {
@@ -64,6 +65,7 @@ export default function DetailItem({ route, navigation }) {
     }, [isReload])
 
     return (
+        
         <View style={styles.container}>
             <Image
                 style={styles.itemImg}

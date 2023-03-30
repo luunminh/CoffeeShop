@@ -46,6 +46,7 @@ export default function UserContainer({ navigation}) {
 
 
     return (
+        
         <View style={styles.container}>
             <View style={styles.firstContainer}>
                 <UserHeader navigator={navigator}  goBackFunc={backToPrevPage} />
