@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
         minWidth: 350,
         // justifyContent: "center",
         // backgroundColor: "#ddd",
-        paddingLeft: 30,
+        paddingLeft: 34,
     },
     errorContainer: {
         alignItems: "center",

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState , useMemo} from 'react'
+import React, { useContext, useEffect, useRef, useState, useMemo } from 'react'
 import { Text, View, TouchableOpacity, Image, TextInput, ScrollView } from 'react-native'
 import styles from './styles'
 import Header from '../../UI/Header'
@@ -16,7 +16,7 @@ export default function FavouriteScreen({ navigation }) {
     const favList = useMemo(() => {
         const rs = favouriteList.map((item) => item.coffeeId)
         return rs
-    }, [favouriteList])
+    }, [favouriteList, isReload])
     useEffect(() => {
         setCoffeeSearchList(() => {
             let rs = coffeeList.filter((item) => {

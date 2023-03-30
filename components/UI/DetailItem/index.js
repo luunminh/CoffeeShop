@@ -48,6 +48,7 @@ export default function DetailItem({ route, navigation }) {
                     onPress={() => {
                         if (favourite) {
                             const rs = favouriteList.find(item => item.coffeeId === elm.id)
+                            console.log(rs.id);
                             delDocument('favourite', rs.id)
                             Toast.show({
                                 type: 'success',
