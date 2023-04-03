@@ -14,7 +14,7 @@ export default function HomeScreen({ navigation }) {
     useEffect(() => {
         setCoffeeSearchList(() => {
             let rs = coffeeList.filter((item) => {
-                return (item.name.toLowerCase().includes(searchInput.trim().toLowerCase()))
+                return (item.name.toLowerCase().includes(searchInput.toLowerCase()))
             })
             if (categoriesIndex !== 0) {
                 rs = rs.filter(item => {
