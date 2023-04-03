@@ -89,7 +89,21 @@ export const styles = StyleSheet.create({
         color: "#FFF",
         lineHeight: 30,
         fontWeight: 700,
-    }
+    },
+    errorContainer: {
+        alignItems: "center",
+        height: 250,
+        width: "100%",
+        justifyContent: "center",
+    },
+    errorText: {
+        textAlign: "center",
+        fontSize: 22,
+        fontFamily: "Rosarivo",
+        width: "60%",
+        color: Colors.textColor
+
+    },
 
 
 })
