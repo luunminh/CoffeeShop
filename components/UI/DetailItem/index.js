@@ -5,6 +5,7 @@ import { db } from '../../../firebase/config';
 import { doc, setDoc, updateDoc } from 'firebase/firestore'
 import Colors from '../../Colors'
 import ActiveButton from '../Button/ActiveButton'
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { AuthContext } from '../../../Context/AuthProvider';
 import BackButton from './BackButton';
 import { AppContext } from '../../../Context/AppProvider';
@@ -43,8 +44,38 @@ export default function DetailItem({ route, navigation }) {
         setIsFavourite(favList.includes(elm.id))
     }, [favourite, favouriteList])
 
+    useEffect(() => {
+        async function updateData() {
+            if (isReload) {
+                const docRef = doc(db, 'coffee', elm.id)
+                await setDoc(docRef, elm);
+                await updateDoc(docRef, {
+                    isfavourite: favourite
+                });
+                if (favourite) {
+                    Toast.show({
+                        type: 'success',
+                        text1: "Added to your favorites",
+                        // text2: "There are some errors while processing !!!",
+                        autoHide: 'true',
+                        visibilityTime: 1000
+                    })
+                } else {
+                    Toast.show({
+                        type: 'success',
+                        text1: "Removes to your favorites",
+                        // text2: "There are some errors while processing !!!",
+                        autoHide: 'true',
+                        visibilityTime: 1000
 
+                    })
+                }
+                setIsReload(false)
+            }
+        }
+        updateData()
 
+    }, [isReload])
     return (
         <View style={styles.container}>
             <Image

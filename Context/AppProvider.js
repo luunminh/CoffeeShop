@@ -1,7 +1,7 @@
 import { async } from '@firebase/util';
 import React, { useContext, useMemo } from 'react'
 import { useState, useEffect } from 'react';
-import { auth, db } from '../firebase/config';
+import { auth, db, storage } from '../firebase/config';
 import useFirestore from '../hooks/useFirestore.js'
 import { AuthContext } from './AuthProvider';
 export const AppContext = React.createContext();
@@ -65,11 +65,9 @@ export default function AppProvider({ children }) {
                 setIsFavouriteList(newData)
                 return;
             });
-            return unsubscribe
+            return unsubscribe;
         }
-
     }, [isReload, user])
-
 
     useEffect(() => {
         console.log("reset coffeeList");

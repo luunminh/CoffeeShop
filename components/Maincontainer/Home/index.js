@@ -42,6 +42,8 @@ export default function HomeScreen({ navigation }) {
             setSearchInput('');
         }
     }, [isReload])
+
+
     return (
         <View style={styles.container}>
             <View style={styles.firstContainer}>

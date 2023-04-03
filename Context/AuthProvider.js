@@ -26,7 +26,7 @@ export default function AuthProvider({ children, navigation }) {
 
 
     useEffect(() => {
-        // fetch data and set loading
+        
     }, [user])
 
 

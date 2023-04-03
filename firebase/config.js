@@ -1,7 +1,8 @@
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/firestore'
 import { getAuth } from 'firebase/auth'
-
+import 'firebase/compat/storage'
+// import {getStorage} from "firebase/storage";
 const firebaseConfig = {
     apiKey: "AIzaSyClQ6T7R3M1LtZ0MOHTAEu59_4PcNpwNLs",
     authDomain: "coffeeshop-c0145.firebaseapp.com",
@@ -12,10 +13,11 @@ const firebaseConfig = {
     measurementId: "G-8BW2E0CWL6"
 };
 
-
+//export const storage = getStorage(app)
 const app = firebase.initializeApp(firebaseConfig)
 const auth = getAuth(app)
 // firebase.analytics()
+
 
 // const auth = firebase.auth();
 const db = firebase.firestore();

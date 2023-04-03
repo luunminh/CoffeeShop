@@ -3,8 +3,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 // new
 import { useFonts } from 'expo-font';
-
-
+//import UserInfoScreen from './components/UserContainer/UserInfo';
 import LoadingScreen from './components/LoadingScreen';
 import LoginScreen from './components/LoginScreen';
 import DetailItem from './components/UI/DetailItem';
@@ -15,13 +14,17 @@ import MainContainer from './components/Maincontainer';
 import AuthProvider from './Context/AuthProvider';
 import AppProvider from './Context/AppProvider';
 import UserContainer from './components/Usercontainer';
-export default function App() {
+import UserInfoScreen from './components/Usercontainer/UserInfo';
 
+export default function App() {
 
   let [fontsLoaded] = useFonts({
     "Rosarivo": require('./assets/fonts/Rosarivo-Regular.ttf'),
   })
-  const Stack = createNativeStackNavigator();
+  const Stack = createNativeStackNavigator(
+  
+  );
+
 
 
   if (!fontsLoaded) {
@@ -36,7 +39,7 @@ export default function App() {
             , title: '', headerTintColor: Colors.activeColor, headerShadowVisible: false,
             headerBackTitleStyle: { paddingLeft: 10, }
           }}>
-            < Stack.Screen
+            <Stack.Screen
               options={{
                 headerShown: false,
               }}
@@ -44,14 +47,21 @@ export default function App() {
             <Stack.Screen name='LoginScreen' component={LoginScreen} />
             <Stack.Screen name='SignUpScreen' component={SignUpScreen} />
             <Stack.Screen name='DetailItem' component={DetailItem} />
-            <Stack.Screen 
-            options={{
-              headerShown:false,
-              gestureEnabled: false,
-            }}
-            name='UserContainer' component={UserContainer}/>
+          <Stack.Screen 
+          name='UserInfoScreen' 
+          component={UserInfoScreen}
+          options={{
+            headerStyle: { backgroundColor: '#736D73', height :50}
+            , title: 'Account Settings', headerTintColor: "#FFF", headerTitleAlign:'center',
+            headerBackTitleStyle: { paddingLeft: 10, }
+          }} /> 
             <Stack.Screen name='HomeScreen' component={HomeScreen} />
-
+            <Stack.Screen
+              options={{
+                headerShown: false,
+                gestureEnabled: false,
+              }}
+              name='UserContainer' component={UserContainer} />
             <Stack.Screen
               options={{
                 headerShown: false,
@@ -61,8 +71,7 @@ export default function App() {
           </Stack.Navigator>
         </AppProvider>
       </AuthProvider>
-    </NavigationContainer >
-
+    </NavigationContainer>
   );
 }
 

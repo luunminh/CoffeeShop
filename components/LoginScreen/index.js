@@ -5,12 +5,13 @@ import { Colors } from 'react-native/Libraries/NewAppScreen'
 import ActiveButton from '../UI/Button/ActiveButton.js'
 import DisabledButton from '../UI/Button/DisabledButton.js'
 import Input from '../UI/Button/Input.js'
-import { signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth'
+import { signInWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged } from 'firebase/auth'
 import { auth, app } from '../../firebase/config.js'
 import { AuthContext } from '../../Context/AuthProvider.js'
 import { Toast } from 'react-native-toast-message/lib/src/Toast.js'
 import toastConfig from '../UI/Toast/index.js'
 import { db } from '../../firebase/config.js'
+
 export default function LoginScreen({ navigation }) {
     const { setUser } = useContext(AuthContext)
     // state
@@ -18,6 +19,7 @@ export default function LoginScreen({ navigation }) {
     const [password, setPassword] = useState('');
     const [errEmail, setErrEmail] = useState(true)
     const [errPass, setErrPass] = useState(true)
+
 
 
 
