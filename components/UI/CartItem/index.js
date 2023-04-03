@@ -1,9 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
 import { SwipeListView } from 'react-native-swipe-list-view'
 import Colors from '../../Colors'
+import { AppContext } from '../../../Context/AppProvider'
 export default function CartItem({ item }) {
-    const [quantity, setQuantity] = useState(0)
+    const { cartList, setCartList } = useContext(AppContext)
+    const [quantity, setQuantity] = useState(item.quantity)
+
+    useEffect(() => {
+        setQuantity(item.quantity)
+    }, [item.quantity])
     return (
         <View style={styles.itemContainer}>
             <TouchableOpacity style={styles.itemWrap}>
@@ -13,14 +19,27 @@ export default function CartItem({ item }) {
                         source={{ uri: `https://firebasestorage.googleapis.com/v0/b/coffeeshop-c0145.appspot.com/o/img%2Fcoffee%2Fcf%2Famericano.png?alt=media&token=10c5a5fe-7c8a-4af8-8b78-7c5ed47fd684` }}
                     /> */}
                     <View style={styles.infoWrap}>
-                        <Text style={styles.itemName}>Bursting Blueberry</Text>
-                        <Text style={styles.itemCategory}>Milktea</Text>
+                        <Text style={styles.itemName}>{item.name}</Text>
+                        <Text style={styles.itemCategory}>{item.categories}</Text>
                         <View style={styles.quantityWrap}>
                             <TouchableOpacity style={styles.btnWrap}
                                 onPress={() => setQuantity((prev) => {
                                     if (prev >= 2) {
+                                        setCartList(() => {
+                                            return cartList.map(elm => {
+                                                let rs = elm
+                                                if (elm.id === item.id) {
+                                                    rs = { ...elm, quantity: elm.quantity - 1 }
+                                                }
+                                                return rs
+                                            })
+                                        })
                                         return prev - 1
-                                    } else return 0
+                                    } else {
+                                        setCartList(() => {
+                                            return cartList.filter(elm => elm.id !== item.id)
+                                        })
+                                    }
                                 })}
                             >
                                 <Image
@@ -31,20 +50,34 @@ export default function CartItem({ item }) {
                             </TouchableOpacity>
                             <Text style={styles.quantity}>{quantity}</Text>
                             <TouchableOpacity style={styles.btnWrap}
-                                onPress={() => setQuantity((prev) => prev + 1)}
+                                onPress={() => {
+                                    setCartList(() => {
+                                        return cartList.map(elm => {
+                                            if (elm.id === item.id) {
+                                                elm = { ...elm, quantity: elm.quantity + 1 }
+                                            }
+                                            return elm
+                                        })
+                                    })
+                                    setQuantity((prev) => prev + 1)
+                                }}
                             >
                                 <Image
                                     source={require('../../../assets/img/add.png')}
                                     style={styles.icon}
                                 />
                             </TouchableOpacity>
-
                         </View>
                     </View>
                 </View>
                 <View style={styles.rightSide}>
-                    <Text style={styles.itemPrice}>25.000</Text>
-                    <TouchableOpacity style={styles.delBtn}>
+                    <Text style={styles.itemPrice}>{`${new Intl.NumberFormat('en-US').format(item.price)} VNĐ`}</Text>
+                    <TouchableOpacity style={styles.delBtn}
+                        onPress={() => {
+                            setCartList(() => {
+                                return cartList.filter(elm => elm.id !== item.id)
+                            })
+                        }}>
                         <Image style={styles.delIcon}
                             source={require('../../../assets/img/delete.png')}
                         />
@@ -100,7 +133,7 @@ const styles = StyleSheet.create({
         color: Colors.activeColor,
         fontSize: 14,
         fontFamily: "Rosarivo",
-        lineHeight: 16,
+        lineHeight: 18,
     },
     itemPrice: {
         color: '#FFF',
@@ -144,6 +177,7 @@ const styles = StyleSheet.create({
     },
     delBtn: {
         backgroundColor: Colors.redColor,
+        marginTop: 2,
         height: 28,
         width: 55,
         justifyContent: 'center',

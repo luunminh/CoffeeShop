@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native'
 import Colors from '../../Colors'
-export default function Item({ navigation, elm }) {
+import { AppContext } from '../../../Context/AppProvider'
+export default function Item({ navigation, elm, toastFunc }) {
+    const { cartList, setCartList } = useContext(AppContext)
     return (
         <TouchableOpacity style={styles.container}
             onPress={() => {
@@ -19,7 +21,31 @@ export default function Item({ navigation, elm }) {
                 <View style={styles.priceLeftSide}>
                     <Text style={styles.text}>{`${new Intl.NumberFormat('en-US').format(elm.price)} `}</Text>
                 </View>
-                <TouchableOpacity style={styles.priceRightSide}>
+                <TouchableOpacity style={styles.priceRightSide}
+                    onPress={() => {
+                        setCartList(() => {
+                            let rs = []
+                            if (cartList.find(item => elm.id === item.coffeeId) !== undefined) {
+                                rs = cartList.map((item => {
+                                    if (item.coffeeId === elm.id) {
+                                        item = { ...item, quantity: item.quantity + 1 }
+                                    }
+                                    return item
+                                }))
+                            } else {
+                                rs = [...cartList, {
+                                    ...elm,
+                                    coffeeId: elm.id,
+                                    quantity: 1,
+                                    billId: cartList[0].billId
+                                    //id
+                                }]
+                            }
+                            toastFunc()
+                            return rs
+                        })
+                    }}
+                >
                     <Image
                         style={styles.iconImg}
                         source={require('../../../assets/img/add.png')}

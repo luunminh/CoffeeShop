@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState, useCallback } from 'react'
 import { Text, View, TouchableOpacity, Image, TextInput, ScrollView } from 'react-native'
 import styles from './styles'
 import Header from '../../UI/Header'
@@ -6,11 +6,22 @@ import Input from '../../UI/Button/Input'
 import Item from '../../UI/Item'
 import { AppContext } from '../../../Context/AppProvider'
 import SideBar from '../../UI/SideBar'
+import { Toast } from 'react-native-toast-message/lib/src/Toast.js'
 export default function HomeScreen({ navigation }) {
 
     const { coffeeList, setCoffeeList, isReload, setIsReload, categories, categoriesIndex } = useContext(AppContext)
     const [searchInput, setSearchInput] = useState('')
     const [coffeeSearchList, setCoffeeSearchList] = useState(coffeeList)
+
+
+    const showToast = useCallback(() => {
+        Toast.show({
+            type: 'success',
+            text1: "Added to your cart",
+            autoHide: 'true',
+            visibilityTime: 2000,
+        })
+    }, [])
     useEffect(() => {
         setCoffeeSearchList(() => {
             let rs = coffeeList.filter((item) => {
@@ -57,7 +68,10 @@ export default function HomeScreen({ navigation }) {
                         <View style={styles.listItem}>
                             {coffeeSearchList.length > 0 ?
                                 (coffeeSearchList.map((elm, index) => (
-                                    <Item navigation={navigation} elm={elm} key={index} />
+                                    <Item navigation={navigation}
+                                        elm={elm} key={index}
+                                        toastFunc={showToast}
+                                    />
                                 ))) :
                                 (
                                     <View style={styles.errorContainer}>
@@ -69,6 +83,7 @@ export default function HomeScreen({ navigation }) {
                     </ScrollView>
                 </View>
             </View>
+            <Toast />
         </View>
     )
 }

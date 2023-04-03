@@ -12,7 +12,7 @@ import { Toast } from 'react-native-toast-message/lib/src/Toast.js'
 import { addDocument, delDocument } from '../../../firebase/services';
 export default function DetailItem({ route, navigation }) {
     const { user } = useContext(AuthContext)
-    const { coffeeList, setCoffeeList, favouriteList, setIsFavouriteList } = useContext(AppContext)
+    const { coffeeList, setCoffeeList, favouriteList, setIsFavouriteList, cartList, setCartList } = useContext(AppContext)
     const { elm } = route.params
     const [favourite, setIsFavourite] = useState(false)
     const [isReload, setIsReload] = useState(false)
@@ -20,6 +20,15 @@ export default function DetailItem({ route, navigation }) {
         navigation.goBack()
     }, [navigation])
 
+    const showAddedCartToast = () => {
+        Toast.show({
+            type: 'success',
+            text1: "Added to your cart!",
+            // text2: "There are some errors while processing !!!",
+            autoHide: 'true',
+            visibilityTime: 1000
+        })
+    }
 
     useEffect(() => {
         navigation.setOptions({
@@ -85,7 +94,30 @@ export default function DetailItem({ route, navigation }) {
                 <Text style={styles.itemPrice}>{`${new Intl.NumberFormat('en-US').format(elm.price)} VNĐ`}
                 </Text>
             </View>
-            <ActiveButton text='Buy now' />
+            <ActiveButton text='Buy now' tranScreen={() => {
+                setCartList(() => {
+                    let rs = []
+                    if (cartList.find(item => elm.id === item.coffeeId) !== undefined) {
+                        console.log("check");
+                        rs = cartList.map((item => {
+                            if (item.coffeeId === elm.id) {
+                                item = { ...item, quantity: item.quantity + 1 }
+                            }
+                            return item
+                        }))
+                    } else {
+                        rs = [...cartList, {
+                            ...elm,
+                            coffeeId: elm.id,
+                            quantity: 1,
+                            billId: cartList[0].billId
+                            //id
+                        }]
+                    }
+                    showAddedCartToast()
+                    return rs
+                })
+            }} />
             <Toast />
         </View>
     )
