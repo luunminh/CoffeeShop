@@ -71,8 +71,7 @@ export default function App() {
           </Stack.Navigator>
         </AppProvider>
       </AuthProvider>
-    </NavigationContainer >
-
+    </NavigationContainer>
   );
 }
 

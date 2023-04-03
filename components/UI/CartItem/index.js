@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
+import { SwipeListView } from 'react-native-swipe-list-view'
 import Colors from '../../Colors'
 export default function CartItem({ item }) {
+    const [quantity, setQuantity] = useState(0)
     return (
         <View style={styles.itemContainer}>
             <TouchableOpacity style={styles.itemWrap}>
@@ -17,15 +19,23 @@ export default function CartItem({ item }) {
                 </View>
                 <View style={styles.rightSide}>
                     <View style={styles.quantityWrap}>
-                        <TouchableOpacity style={styles.btnWrap}>
+                        <TouchableOpacity style={styles.btnWrap}
+                            onPress={() => setQuantity((prev) => {
+                                if (prev > 0) {
+                                    return prev - 1
+                                } else return 0
+                            })}
+                        >
                             <Image
                                 source={require('../../../assets/img/subtract.png')}
                                 style={styles.icon}
                             />
 
                         </TouchableOpacity>
-                        <Text style={styles.quantity}>1</Text>
-                        <TouchableOpacity style={styles.btnWrap}>
+                        <Text style={styles.quantity}>{quantity}</Text>
+                        <TouchableOpacity style={styles.btnWrap}
+                            onPress={() => setQuantity((prev) => prev + 1)}
+                        >
                             <Image
                                 source={require('../../../assets/img/add.png')}
                                 style={styles.icon}

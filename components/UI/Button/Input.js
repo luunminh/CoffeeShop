@@ -7,7 +7,7 @@ function Input({ placeholder, passwordCheck, setState, line, setErrState, inputT
     return (
         <TextInput style={styles.inputText}
             textAlignVertical={txtAlign}
-            multiline={line ? true : false} 
+            multiline={line ? true : false}
             numberOfLines={line}
             value={valueState} placeholder={placeholder}
             placeholderTextColor={Colors.textColor}

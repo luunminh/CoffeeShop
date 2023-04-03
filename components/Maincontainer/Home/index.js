@@ -48,7 +48,7 @@ export default function HomeScreen({ navigation }) {
                         placeholder="Search Coffee...."
                         setState={setSearchInput}
                         valueState={searchInput}
-                    
+
                     />
                 </View>
             </View>

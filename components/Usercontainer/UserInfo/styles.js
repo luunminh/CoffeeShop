@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
         gap: 20,
         // backgroundColor: 'red',
     },
-    
+
     inputText: {
         paddingHorizontal: 10,
         paddingVertical: 14,
@@ -70,17 +70,17 @@ const styles = StyleSheet.create({
     {
         color: '#FFF',
 
-        marginTop:8,
+        marginTop: 0,
         paddingHorizontal: 10,
-        marginBottom:-12,
+        marginBottom: -12,
         // fontFamily:"Rosarivo",
         fontSize: 15,
-        color:Colors.textColor,
-        fontWeight:700
+        color: Colors.textColor,
+        fontWeight: 600
     },
-    btnSave:{
-        fontSize:16,
-        fontWeight:700,
+    btnSave: {
+        fontSize: 16,
+        fontWeight: 700,
         color: Colors.activeColor,
         color: '#FFF'
     }

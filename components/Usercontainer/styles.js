@@ -6,7 +6,7 @@ import Colors from '../Colors';
 
 const styles = StyleSheet.create({
     container: {
-        paddingTop:25,
+        paddingTop: 25,
         flex: 1,
         backgroundColor: Colors.bgColor,
         alignItems: "center",
@@ -14,10 +14,10 @@ const styles = StyleSheet.create({
         gap: 8,
         width: "100%",
         overflow: "hidden",
-        paddingHorizontal: 20,
+        paddingHorizontal: 22,
         paddingBottom: 140,
     },
-    firstContainer:{
+    firstContainer: {
         backgroundColor: Colors.bgColor,
         alignItems: "center",
         paddingHorizontal: 2,
@@ -32,26 +32,26 @@ const styles = StyleSheet.create({
     },
     secondContainer: {
         flex: 1,
-        height: "100%",
+        height: "90%",
         flexDirection: "row",
         flexWrap: 'wrap',
         justifyContent: "space-between",
-        paddingRight: 12,
         width: '100%',
     },
 
     row: {
         flex: 1,
+        width: "100%",
         flexDirection: 'row',
         alignItems: 'center',
         paddingLeft: 20,
         paddingRight: 20,
         paddingTop: 14,
         paddingBottom: 15,
-        borderStyle:"dashed",
-        borderColor:"#4D444D",
-        borderTopWidth:1,
-        borderBottomWidth:1,
+        borderStyle: "dashed",
+        borderColor: "#4D444D",
+        borderTopWidth: 1,
+        borderBottomWidth: 1,
     },
     rowWrapper: {
         width: "100%",
@@ -59,25 +59,25 @@ const styles = StyleSheet.create({
     },
     rowTitle: {
         fontFamily: 'Rosarivo',
-        fontSize: 18,
+        fontSize: 16,
         fontWeight: '400',
         color: '#FFF',
     },
-    backIcon:{
+    backIcon: {
         width: 20,
         height: 20,
-        width:-5,
+        width: -5,
         resizeMode: 'contain',
     },
-   
+
     backContainer: {
-        height:40,
-        width:40,
+        height: 40,
+        width: 40,
         position: 'absolute',
         borderRadius: 99,
-        justifyContent:'center',
-        alignContent:'center',
-        paddingTop:0,
+        justifyContent: 'center',
+        alignContent: 'center',
+        paddingTop: 0,
         top: 25,
     },
 })
