@@ -11,13 +11,13 @@ import UserHeader from "../UI/UserHeader";
 import { AppContext } from '../../Context/AppProvider'
 import { useFocusEffect } from "@react-navigation/native";
 import ActiveButton from '../UI/Button/ActiveButton'
-import { linkWithPhoneNumber, reset } from "firebase/auth";
 import { auth } from "../../firebase/config";
-import { signOut } from "firebase/auth";
+import { AuthContext } from "../../Context/AuthProvider";
+import { signOut } from 'firebase/auth'
 
 export default function UserContainer({ navigation }) {
+    const { setUser } = useContext(AuthContext)
     const { setIsReload } = useContext(AppContext)
-
 
     useFocusEffect(
         React.useCallback(() => {
@@ -45,17 +45,25 @@ export default function UserContainer({ navigation }) {
 
 
 
-    return (
+    const transToLoginScreen = useCallback(() => {
+        signOut(auth).then(() => {
+            navigation.navigate('LoginScreen')
+        }).catch(error => {
+            console.log(error)
+            alert(error)
+        })
+    }, [navigation])
 
+    return (
         <View style={styles.container}>
             <View style={styles.firstContainer}>
-                <UserHeader navigator={navigator} goBackFunc={backToPrevPage} />
+                <UserHeader navigator={navigator} user={undefined} reloadFunc={setIsReload} goBackFunc={backToPrevPage} />
             </View>
             <View style={styles.secondContainer}>
                 <ScrollView>
                     <View style={styles.rowWrapper}>
                         <View style={styles.row}>
-                            <TouchableOpacity onPress={() => navigation.navigate("UserInfoScreen")} >
+                            <TouchableOpacity onPress={() => navigation.navigate("UserInfo")}>
                                 <Text style={styles.rowTitle}>Account Settings</Text>
                             </TouchableOpacity>
                         </View>
@@ -91,7 +99,7 @@ export default function UserContainer({ navigation }) {
                 </ScrollView>
 
             </View>
-            <ActiveButton text='Sign out' />
+            <ActiveButton text='Sign out' tranScreen={transToLoginScreen} />
         </View>
     );
 }

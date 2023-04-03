@@ -1,18 +1,18 @@
-import React, { useCallback, useContext,useEffect,useState } from 'react'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet, Image, BackHandler } from 'react-native'
 import UserAvatar from 'react-native-user-avatar-component'
 import Colors from '../../Colors'
 import * as ImagePicker from 'expo-image-picker'
 import { AuthContext } from '../../../Context/AuthProvider'
-import {db} from '../../../firebase/config'
-import {getStorage, ref, uploadBytes,getDownloadURL} from 'firebase/storage'
+import { db } from '../../../firebase/config'
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 
 
-export default function UserHeader({ navigation, goBackFunc, reloadFunc }){
+export default function UserHeader({ navigation, goBackFunc, reloadFunc }) {
     const { user, setUser } = useContext(AuthContext);
 
-    const [image,setImage]=useState('');
-    const [uploading,setUploading] =useState(false);
+    const [image, setImage] = useState('');
+    const [uploading, setUploading] = useState(false);
 
 
     const uploadImage = async (uri, name) => {
@@ -24,44 +24,43 @@ export default function UserHeader({ navigation, goBackFunc, reloadFunc }){
         const downloadURL = await getDownloadURL(storageRef);
         return downloadURL;
     };
-  
-    const updateProFile = async(image)=>
-    {
-       
-        await db.collection('users').where('uid','==',user.uid).get()
-        .then((querySnapshot) => {
-            querySnapshot.forEach(documentSnapshot => {
-            documentSnapshot.ref.update({
-                photoURL : image
-            }).then(() => {
-                console.log('User updated!');
+
+    const updateProFile = async (image) => {
+
+        await db.collection('users').where('uid', '==', user.uid).get()
+            .then((querySnapshot) => {
+                querySnapshot.forEach(documentSnapshot => {
+                    documentSnapshot.ref.update({
+                        photoURL: image
+                    }).then(() => {
+                        console.log('User updated!');
+                    });
+                });
             });
-        });
-    });
-}
-    
+    }
+
 
     const pickImage = async () => {
 
-            let result = await ImagePicker.launchImageLibraryAsync({
-                mediaTypes: ImagePicker.MediaTypeOptions.All,
-                allowsEditing: true,
-                aspect: [4, 3],
-                quality: 1,
-            });
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            allowsEditing: true,
+            aspect: [4, 3],
+            quality: 1,
+        });
 
-            if (!result.canceled) {
-                setUploading(true);
-                const downloadURL = await uploadImage(result.assets[0].uri, user.uid);
-                setImage(downloadURL);
-                
+        if (!result.canceled) {
+            setUploading(true);
+            const downloadURL = await uploadImage(result.assets[0].uri, user.uid);
+            setImage(downloadURL);
+
             updateProFile(downloadURL);
-                setUser(() => {
-                    return {...user, photoURL: downloadURL}
-                })
-                setUploading(false);
-            }
+            setUser(() => {
+                return { ...user, photoURL: downloadURL }
+            })
+            setUploading(false);
         }
+    }
 
 
 
@@ -81,7 +80,7 @@ export default function UserHeader({ navigation, goBackFunc, reloadFunc }){
             <View style={styles.userWrap}>
                 <TouchableOpacity style={styles.leftSide}>
                     <View style={styles.avaBorder}>
-                        <UserAvatar size="88" color={Colors.textColor} name={`${(user.photoURL) ? user.photoURL : user.displayName}`} src={`${(user.photoURL) ? user.photoURL:''}` } />
+                        <UserAvatar size="88" color={Colors.textColor} name={`${(user.photoURL) ? user.photoURL : user.displayName}`} src={`${(user.photoURL) ? user.photoURL : ''}`} />
                     </View>
                 </TouchableOpacity>
                 <View style={styles.rightSide} >
@@ -114,7 +113,7 @@ const styles = StyleSheet.create({
     },
     leftSide:
     {
-    
+
         marginTop: 50,
     },
     avaBorder: {
