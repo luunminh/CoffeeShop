@@ -26,7 +26,6 @@ export default function Item({ navigation, elm, toastFunc }) {
                         setCartList(() => {
                             let rs = []
                             if (cartList.find(item => elm.id === item.coffeeId) !== undefined) {
-                                console.log("check");
                                 rs = cartList.map((item => {
                                     if (item.coffeeId === elm.id) {
                                         item = { ...item, quantity: item.quantity + 1 }
