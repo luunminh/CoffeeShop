@@ -14,29 +14,9 @@ import ActiveButton from '../UI/Button/ActiveButton'
 import { auth } from "../../firebase/config";
 import { AuthContext } from "../../Context/AuthProvider";
 import { signOut } from 'firebase/auth'
-
 export default function UserContainer({ navigation }) {
     const { setUser } = useContext(AuthContext)
-    const { setIsReload } = useContext(AppContext)
-
-    useFocusEffect(
-        React.useCallback(() => {
-            const onBackPress = () => {
-                navigation.navigate('HomeScreen');
-                return true;
-            };
-            BackHandler.addEventListener(
-                'hardwareBackPress',
-                onBackPress
-            );
-            return () => {
-                BackHandler.removeEventListener(
-                    'hardwareBackPress',
-                    onBackPress
-                );
-            };
-        }, []),
-    );
+    const { setIsReload, setCartList, setCart } = useContext(AppContext)
 
     const backToPrevPage = useCallback(() => {
         navigation.goBack()
@@ -47,6 +27,8 @@ export default function UserContainer({ navigation }) {
 
     const transToLoginScreen = useCallback(() => {
         signOut(auth).then(() => {
+            setCartList([])
+            setCart('')
             navigation.navigate('LoginScreen')
         }).catch(error => {
             console.log(error)

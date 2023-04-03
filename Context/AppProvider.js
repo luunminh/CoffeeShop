@@ -96,11 +96,13 @@ export default function AppProvider({ children }) {
                     ...doc.data(),
                     id: doc.id,
                 }));
-                let newData = newDocs.filter((item) => {
-                    return item.isPaid === false
-                })
-                // console.log(newData)
-                setCart(newData[0].id)
+                if (newDocs.length > 0) {
+                    let newData = newDocs.filter((item) => {
+                        return item.isPaid === false
+                    })
+                    // console.log(newData)
+                    setCart(newData[0].id)
+                }
                 return;
             });
             return unsubscribe
@@ -140,13 +142,13 @@ export default function AppProvider({ children }) {
             });
             return unsubscribe
         }
-    }, [cart, coffeeList])
+    }, [cart, coffeeList]
 
     return (
         <AppContext.Provider value={{
             coffeeList, setCoffeeList, isReload, setIsReload, categories, setCategories
             , categoriesIndex, setCategoriesIndex, favouriteList, setIsFavouriteList,
-            cartList, setCartList, cart,
+            cartList, setCartList, cart, setCart
         }}>
             {children}
         </AppContext.Provider>
