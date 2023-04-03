@@ -142,7 +142,8 @@ export default function AppProvider({ children }) {
             });
             return unsubscribe
         }
-    }, [cart, coffeeList]
+    }, [cart, coffeeList])
+
 
     return (
         <AppContext.Provider value={{
