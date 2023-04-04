@@ -82,7 +82,7 @@ export default function UserInfoScreen({ navigation }) {
                 <Text style={styles.titleLabel}>Password</Text>
                 <Input
                     style={styles.inputText}
-                    placeholder="Enter your password"
+                    placeholder="Enter your new password"
                     // setState={setPhone}
                     // setErrState={setErrPhone}
                     inputType={"password"}

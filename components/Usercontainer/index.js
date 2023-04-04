@@ -45,7 +45,7 @@ export default function UserContainer({ navigation }) {
                 <ScrollView>
                     <View style={styles.rowWrapper}>
                         <View style={styles.row}>
-                            <TouchableOpacity onPress={() => navigation.navigate("UserInfo")}>
+                            <TouchableOpacity onPress={() => navigation.navigate("UserInfoScreen")}>
                                 <Text style={styles.rowTitle}>Account Settings</Text>
                             </TouchableOpacity>
                         </View>
