@@ -1,9 +1,22 @@
 import React, { useContext } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native'
 import Colors from '../../Colors'
+import firebase, { db } from '../../../firebase/config'
+import { updateDoc, doc } from 'firebase/firestore'
 import { AppContext } from '../../../Context/AppProvider'
+import { addDocument } from '../../../firebase/services'
+import { AuthContext } from '../../../Context/AuthProvider'
 export default function Item({ navigation, elm, toastFunc }) {
-    const { cartList, setCartList } = useContext(AppContext)
+    const { user } = useContext(AuthContext)
+    const { cartList, setCartList, cart } = useContext(AppContext)
+
+    const updateData = async (value, id) => {
+        const docRef = doc(db, 'bill_detail', id)
+        await updateDoc(docRef, {
+            quantity: value
+        })
+    }
+
     return (
         <TouchableOpacity style={styles.container}
             onPress={() => {
@@ -23,23 +36,31 @@ export default function Item({ navigation, elm, toastFunc }) {
                 </View>
                 <TouchableOpacity style={styles.priceRightSide}
                     onPress={() => {
-                        setCartList(() => {
+                        setCartList(async () => {
                             let rs = []
                             if (cartList.find(item => elm.id === item.coffeeId) !== undefined) {
                                 rs = cartList.map((item => {
                                     if (item.coffeeId === elm.id) {
+                                        updateData(item.quantity + 1, item.id)
                                         item = { ...item, quantity: item.quantity + 1 }
                                     }
                                     return item
                                 }))
                             } else {
+                                addDocument('bill_detail', {
+                                    billId: cart,
+                                    quantity: 1,
+                                    coffeeId: elm.id
+                                })
+
                                 rs = [...cartList, {
                                     ...elm,
                                     coffeeId: elm.id,
                                     quantity: 1,
-                                    billId: cartList[0].billId
+                                    billId: cart
                                     //id
                                 }]
+
                             }
                             toastFunc()
                             return rs

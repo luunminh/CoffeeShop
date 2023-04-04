@@ -2,11 +2,20 @@ import React, { useState, useContext, useEffect } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
 import { SwipeListView } from 'react-native-swipe-list-view'
 import Colors from '../../Colors'
+import { db } from '../../../firebase/config'
+import { doc, setDoc, updateDoc } from 'firebase/firestore'
 import { AppContext } from '../../../Context/AppProvider'
+import { delDocument } from '../../../firebase/services'
 export default function CartItem({ item }) {
     const { cartList, setCartList } = useContext(AppContext)
     const [quantity, setQuantity] = useState(item.quantity)
 
+    const updateData = async (value) => {
+        const docRef = doc(db, 'bill_detail', item.id)
+        await updateDoc(docRef, {
+            quantity: value
+        })
+    }
     useEffect(() => {
         setQuantity(item.quantity)
     }, [item.quantity])
@@ -25,6 +34,7 @@ export default function CartItem({ item }) {
                             <TouchableOpacity style={styles.btnWrap}
                                 onPress={() => setQuantity((prev) => {
                                     if (prev >= 2) {
+
                                         setCartList(() => {
                                             return cartList.map(elm => {
                                                 let rs = elm
@@ -34,11 +44,10 @@ export default function CartItem({ item }) {
                                                 return rs
                                             })
                                         })
+                                        updateData(prev - 1)
                                         return prev - 1
                                     } else {
-                                        setCartList(() => {
-                                            return cartList.filter(elm => elm.id !== item.id)
-                                        })
+                                        return prev
                                     }
                                 })}
                             >
@@ -59,7 +68,10 @@ export default function CartItem({ item }) {
                                             return elm
                                         })
                                     })
-                                    setQuantity((prev) => prev + 1)
+                                    setQuantity((prev) => {
+                                        updateData(prev + 1)
+                                        return prev + 1
+                                    })
                                 }}
                             >
                                 <Image
@@ -74,6 +86,7 @@ export default function CartItem({ item }) {
                     <Text style={styles.itemPrice}>{`${new Intl.NumberFormat('en-US').format(item.price)} VNĐ`}</Text>
                     <TouchableOpacity style={styles.delBtn}
                         onPress={() => {
+                            delDocument('bill_detail', item.id)
                             setCartList(() => {
                                 return cartList.filter(elm => elm.id !== item.id)
                             })

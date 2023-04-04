@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useEffect, useState, useMemo } from 'react'
-import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
 import { db } from '../../../firebase/config';
 import { doc, setDoc, updateDoc } from 'firebase/firestore'
@@ -13,7 +13,7 @@ import { Toast } from 'react-native-toast-message/lib/src/Toast.js'
 import { addDocument, delDocument } from '../../../firebase/services';
 export default function DetailItem({ route, navigation }) {
     const { user } = useContext(AuthContext)
-    const { coffeeList, setCoffeeList, favouriteList, setIsFavouriteList, cartList, setCartList } = useContext(AppContext)
+    const { coffeeList, setCoffeeList, cart, favouriteList, setIsFavouriteList, cartList, setCartList } = useContext(AppContext)
     const { elm } = route.params
     const [favourite, setIsFavourite] = useState(false)
     const [isReload, setIsReload] = useState(false)
@@ -118,7 +118,9 @@ export default function DetailItem({ route, navigation }) {
                 </TouchableOpacity>
             </View>
             <View style={styles.descWrap}>
-                <Text style={styles.itemDesc}>{elm.description}</Text>
+                <ScrollView>
+                    <Text style={styles.itemDesc}>{elm.description}</Text>
+                </ScrollView>
             </View>
             <View style={styles.priceWrap}>
                 <Text style={styles.priceTitle}>Price</Text>
@@ -137,11 +139,16 @@ export default function DetailItem({ route, navigation }) {
                             return item
                         }))
                     } else {
+                        addDocument('bill_detail', {
+                            billId: cart,
+                            quantity: 1,
+                            coffeeId: elm.id
+                        })
                         rs = [...cartList, {
                             ...elm,
                             coffeeId: elm.id,
                             quantity: 1,
-                            billId: cartList[0].billId
+                            billId: cart
                             //id
                         }]
                     }

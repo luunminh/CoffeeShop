@@ -7,9 +7,9 @@ import { AppContext } from '../../../Context/AppProvider'
 export default function CartScreen({ navigator }) {
     const { cartList, setCartList } = useContext(AppContext)
     const total = useMemo(() => {
-        const rs = cartList.reduce((acc, cur) => {
+        let rs = cartList.length > 0 ? (cartList.reduce((acc, cur) => {
             return acc + cur.price * cur.quantity
-        }, 0)
+        }, 0)) : 0
         return rs
     }, [cartList])
 

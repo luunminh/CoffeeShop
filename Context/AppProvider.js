@@ -1,9 +1,10 @@
 import { async } from '@firebase/util';
 import React, { useContext, useMemo } from 'react'
 import { useState, useEffect } from 'react';
-import { auth, db, storage } from '../firebase/config';
+import firebase, { auth, db, storage } from '../firebase/config';
 import useFirestore from '../hooks/useFirestore.js'
 import { AuthContext } from './AuthProvider';
+import { addDocument } from '../firebase/services';
 export const AppContext = React.createContext();
 
 export default function AppProvider({ children }) {
@@ -84,6 +85,7 @@ export default function AppProvider({ children }) {
     }, [coffeeList])
 
     useEffect(() => {
+        console.log("reload cart");
         if (user.uid) {
             let collectionRef = db.collection('bill')
             collectionRef = collectionRef.where(
@@ -100,14 +102,31 @@ export default function AppProvider({ children }) {
                     let newData = newDocs.filter((item) => {
                         return item.isPaid === false
                     })
+                    if (newData.length === 1) {
+                        setCart(newData[0].id)
+                    } else {
+
+                        addDocument('bill', {
+                            isPaid: false,
+                            time: firebase.firestore.FieldValue.serverTimestamp(),
+                            userId: user.uid,
+                        })
+                        setCartList([])
+                    }
                     // console.log(newData)
-                    setCart(newData[0].id)
+                } else {
+                    addDocument('bill', {
+                        isPaid: false,
+                        time: firebase.firestore.FieldValue.serverTimestamp(),
+                        userId: user.uid,
+                    })
+                    setCartList([])
                 }
                 return;
             });
             return unsubscribe
         }
-    }, [user])
+    }, [user, cartList])
 
 
     useEffect(() => {
