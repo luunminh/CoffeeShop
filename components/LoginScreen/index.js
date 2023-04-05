@@ -35,11 +35,11 @@ export default function LoginScreen({ navigation }) {
                 ...doc.data(),
                 id: doc.id,
             }));
-            const { uid, email: userEmail, phoneNumber, photoURL, displayName } = newDocs[0]
-            const data = { uid, userEmail, phoneNumber, photoURL, displayName }
+            const { uid, email: userEmail, phoneNumber, photoURL, displayName, address, id } = newDocs[0]
+            // const data = { uid, userEmail, phoneNumber, photoURL, displayName }
             // console.log(data);
             setUser(() => {
-                return { uid, userEmail, phoneNumber, photoURL, displayName }
+                return { uid, userEmail, phoneNumber, photoURL, displayName, address, id }
             })
             return newDocs
         });

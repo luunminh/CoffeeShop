@@ -83,7 +83,14 @@ const styles = StyleSheet.create({
         fontWeight: 700,
         color: Colors.activeColor,
         color: '#FFF'
-    }
+    },
+    errorMsg: {
+        color: Colors.redColor,
+        textAlign: "left",
+        paddingLeft: 5,
+        marginBottom: -12
+
+    },
 
 })
 export default styles

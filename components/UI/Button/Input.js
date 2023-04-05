@@ -3,17 +3,18 @@ import { TextInput, StyleSheet } from 'react-native'
 import Colors from '../../Colors'
 import { isValidEmail, isValidPassword, isValidInput, isValidPhoneNumber } from '../../Validations/Validations'
 
-function Input({ placeholder, passwordCheck, setState, line, setErrState, inputType, valueState, txtAlign }, ref) {
+function Input({ placeholder, passwordCheck, disable, setState, line, setErrState, inputType, valueState, txtAlign }, ref) {
     return (
         <TextInput style={styles.inputText}
             textAlignVertical={txtAlign}
             multiline={line ? true : false}
+            readOnly={disable ? true : false}
             numberOfLines={line}
             value={valueState} placeholder={placeholder}
             placeholderTextColor={Colors.textColor}
             secureTextEntry={passwordCheck}
             onChangeText={(text) => {
-                setState(text.trim())
+                setState(text)
                 switch (inputType) {
                     case 'email': {
                         setErrState(isValidEmail(text) ? "" : "Email not in correct format")

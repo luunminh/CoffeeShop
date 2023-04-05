@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'flex-start',
-        gap: 30,
+        gap: 15,
     },
     leftSide:
     {

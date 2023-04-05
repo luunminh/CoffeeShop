@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
 import { SwipeListView } from 'react-native-swipe-list-view'
 import Colors from '../../Colors'
 import { db } from '../../../firebase/config'
-import { doc, setDoc, updateDoc } from 'firebase/firestore'
+import { doc, updateDoc } from 'firebase/firestore'
 import { AppContext } from '../../../Context/AppProvider'
 import { delDocument } from '../../../firebase/services'
 export default function CartItem({ item }) {

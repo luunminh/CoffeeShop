@@ -42,7 +42,7 @@ export default function CartScreen({ navigator }) {
                     </View>
                     <View style={styles.priceWrap}>
                         <Text style={styles.label}>Shipping fee</Text>
-                        <Text style={styles.price}>{`${total === 0 ? 0 : `20.000`}vnđ`}</Text>
+                        <Text style={styles.price}>{`${total === 0 ? 0 : `20,000`} vnđ`}</Text>
                     </View>
                 </View>
             </View>

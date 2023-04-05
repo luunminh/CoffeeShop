@@ -25,13 +25,14 @@ export default function SignUpScreen({ navigation }) {
     const [errPass, setErrPass] = useState(true)
 
 
-    const isValidAllInput = () => {
+    function isValidAllInput() {
         return ((errName.length === 0) && (errEmail.length === 0)
             && (errPhone.length === 0) && (errPass.length === 0))
     }
 
     const handleSubmit = () => {
-        if (isValidAllInput) {
+        const isValid = isValidAllInput()
+        if (isValid) {
             createUserWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
                     const { providerData } = userCredential.user
@@ -43,6 +44,7 @@ export default function SignUpScreen({ navigation }) {
                         // password: password,
                         photoURL: null,
                         displayName: name,
+                        address: null
                     }
                     setUser(newUser)
                     addDocument('users', newUser)
