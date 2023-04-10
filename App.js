@@ -24,7 +24,7 @@ export default function App() {
     "Rosarivo": require('./assets/fonts/Rosarivo-Regular.ttf'),
   })
   const Stack = createNativeStackNavigator(
-  
+
   );
 
 
@@ -49,38 +49,38 @@ export default function App() {
             <Stack.Screen name='LoginScreen' component={LoginScreen} />
             <Stack.Screen name='SignUpScreen' component={SignUpScreen} />
             <Stack.Screen name='DetailItem' component={DetailItem} />
-          <Stack.Screen 
-          name='UserInfoScreen' 
-          component={UserInfoScreen}
-          options={{
-            headerStyle: { backgroundColor: '#736D73', height :50}
-            , title: 'Account Settings', headerTintColor: "#FFF", headerTitleAlign:'center',
-            headerBackTitleStyle: { paddingLeft: 10, }
-          }} />
-          <Stack.Screen 
-          name='ContactScreen' 
-          component={ContactScreen}
-          options={{
-            headerStyle: { backgroundColor: '#736D73', height :50}
-            , title: 'Contact', headerTintColor: "#FFF", headerTitleAlign:'center',
-            headerBackTitleStyle: { paddingLeft: 10, }
-          }} />
-          <Stack.Screen 
-          name='TermOfUseScreen' 
+            <Stack.Screen
+              name='UserInfoScreen'
+              component={UserInfoScreen}
+              options={{
+                headerStyle: { backgroundColor: '#736D73', height: 50 }
+                , title: 'Account Settings', headerTintColor: "#FFF", headerTitleAlign: 'center',
+                headerBackTitleStyle: { paddingLeft: 10, }
+              }} />
+            <Stack.Screen
+              name='ContactScreen'
+              component={ContactScreen}
+              options={{
+                headerStyle: { backgroundColor: '#736D73', height: 50 }
+                , title: 'Contact', headerTintColor: "#FFF", headerTitleAlign: 'center',
+                headerBackTitleStyle: { paddingLeft: 10, }
+              }} />
+            <Stack.Screen
+              name='TermOfUseScreen'
               component={TermOfUseScreen}
-          options={{
-            headerStyle: { backgroundColor: Colors.bgColor, height :50}
-            , headerTintColor: "#FFF",
-            headerBackTitleStyle: { paddingLeft: 10, }
-          }} />
-          
-          <Stack.Screen 
-          name='AboutUsScreen' 
+              options={{
+                headerStyle: { backgroundColor: Colors.bgColor, height: 50 }
+                , headerTintColor: "#FFF",
+                headerBackTitleStyle: { paddingLeft: 10, }
+              }} />
+
+            <Stack.Screen
+              name='AboutUsScreen'
               component={AboutUsScreen}
-          options={{
-            headerStyle: { backgroundColor: Colors.bgColor, height :50}
-            , headerBackTitleStyle: { paddingLeft: 10, }
-          }} />  
+              options={{
+                headerStyle: { backgroundColor: Colors.bgColor, height: 50 }
+                , headerBackTitleStyle: { paddingLeft: 10, }
+              }} />
 
 
             <Stack.Screen name='HomeScreen' component={HomeScreen} />
