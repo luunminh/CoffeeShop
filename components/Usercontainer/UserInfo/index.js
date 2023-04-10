@@ -1,4 +1,5 @@
 import React, { useContext, useCallback, useEffect, useState } from "react";
+import { Text, View, TouchableOpacity } from "react-native";
 import styles from "./styles";
 import Input from "../../UI/Button/Input";
 import { AuthContext } from "../../../Context/AuthProvider";
@@ -7,23 +8,21 @@ import { updatePassword } from "firebase/auth";
 import { db, auth } from "../../../firebase/config";
 import BackButton from "../../UI/DetailItem/BackButton";
 import { Toast } from 'react-native-toast-message/lib/src/Toast.js'
-import { View, Text } from "react-native";
 export default function UserInfoScreen({ navigation }) {
     const { user, setUser } = useContext(AuthContext)
     const [name, setName] = useState(user.displayName)
     const [phoneNumber, setPhoneNumber] = useState(user.phoneNumber)
-    const [address, setAddress] = useState(user.address)
+    const [address, setAddress] = useState(user.address ? user.address : '')
     const [password, setPassword] = useState('')
     const [errName, setErrName] = useState(true)
     const [errPass, setErrPass] = useState(true)
     const [errPhone, setErrPhone] = useState(true)
     const [errAddress, setErrAddress] = useState(true)
-
     const backToPrevPage = useCallback(() => {
         navigation.goBack()
     }, [navigation])
 
-    const updateProFile = async () => {
+    const updateProFile = useCallback(async () => {
 
         await db.collection('users').where('uid', '==', user.uid).get()
             .then((querySnapshot) => {
@@ -31,7 +30,7 @@ export default function UserInfoScreen({ navigation }) {
                     documentSnapshot.ref.update({
                         displayName: name,
                         phoneNumber: phoneNumber,
-                        address: address,
+                        address: address.trim(),
                     }).then(() => {
                         Toast.show({
                             type: 'success',
@@ -67,14 +66,13 @@ export default function UserInfoScreen({ navigation }) {
                 });
             });
 
-
         setUser({
             ...user,
             displayName: name,
             phoneNumber: phoneNumber,
             address: address,
         })
-    }
+    }, [name, password, phoneNumber, address])
 
 
     const isValidAllInput = () => {
@@ -112,7 +110,7 @@ export default function UserInfoScreen({ navigation }) {
                 </TouchableOpacity>
             )
         })
-    }, [errAddress, errName, errPass, errPhone])
+    }, [errAddress, errName, errPass, errPhone, name, phoneNumber, password, address])
 
     return (
         <View style={styles.container}>

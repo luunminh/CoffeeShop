@@ -17,17 +17,17 @@ export default function AboutUsScreen({ navigation }) {
             ),
         })
     }, [])
-     return (
+    return (
         <View style={styles.container}>
             <Image
-            style ={styles.logo}
+                style={styles.logo}
                 source={require('../../../assets/img/logo.jpg')}
             />
-            <View style ={styles.firstWrap}>
-                <Text style ={styles.titleContainer}>App Version 5.0.2</Text>
+            <View style={styles.firstWrap}>
+                <Text style={styles.titleContainer}>App Version 5.0.2</Text>
                 <Text style={styles.txtContainer}>Licensed by:</Text>
             </View>
-            <View style = {styles.secondWrap} >
+            <View style={styles.secondWrap} >
                 <Text style={styles.txtContainer}>TWO Joint Stock Company</Text>
                 <Text style={styles.txtContainer}>A2-00.04 Sarimi Apartment</Text>
                 <Text style={styles.txtContainer}>74 Nguyen Co Thach, An Loi Dong Ward, Ho Chi Minh City</Text>

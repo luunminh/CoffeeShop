@@ -61,7 +61,7 @@ export default function App() {
               name='ContactScreen'
               component={ContactScreen}
               options={{
-                headerStyle: { backgroundColor: '#736D73', height: 50 }
+                headerStyle: { backgroundColor: Colors.bgColor, height: 50 }
                 , title: 'Contact', headerTintColor: "#FFF", headerTitleAlign: 'center',
                 headerBackTitleStyle: { paddingLeft: 10, }
               }} />

@@ -8,11 +8,12 @@ const styles = StyleSheet.create({
         height: "90%",
         flexDirection: "row",
         flexWrap: 'wrap',
-       justifyContent: "space-between",
+        justifyContent: "space-between",
         alignItems: 'center',
         width: '100%',
-        backgroundColor: Colors.bgColor
-    
+        backgroundColor: Colors.bgColor,
+        paddingTop: 20,
+
     },
     row: {
         flex: 1,
@@ -20,8 +21,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         paddingLeft: 20,
         paddingRight: 20,
-        paddingTop: 14,
-        paddingBottom: 15,
+        paddingTop: 20,
+        paddingBottom: 24,
         borderStyle: "dashed",
         borderColor: "#4D444D",
         borderTopWidth: 1,
@@ -32,8 +33,8 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.bgColor,
     },
     rightSide: {
-      left: 20,
-      flexDirection:"column",  
+        left: 20,
+        flexDirection: "column",
     },
     rowTitle: {
         fontFamily: 'Rosarivo',
@@ -42,22 +43,23 @@ const styles = StyleSheet.create({
         color: '#FFF',
         marginTop: 1,
     },
-    detailTitle:{
+    detailTitle: {
         top: 3,
         fontSize: 16,
         color: Colors.activeColor,
-        fontFamily:'Rosarivo'
+        fontWeight: '300',
+        // fontFamily: 'Rosarivo'
     },
     backIcon: {
         width: 25,
         height: 25,
         alignItems: "center",
         justifyContent: "center",
-      //  marginLeft: -10,
-      //  borderRadius: 99,
-        top : 10,
-        
-        
+        //  marginLeft: -10,
+        //  borderRadius: 99,
+        top: 10,
+
+
     }
 })
 export default styles;
