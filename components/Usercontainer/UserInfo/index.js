@@ -7,8 +7,7 @@ import { updatePassword } from "firebase/auth";
 import { db, auth } from "../../../firebase/config";
 import BackButton from "../../UI/DetailItem/BackButton";
 import { Toast } from 'react-native-toast-message/lib/src/Toast.js'
-
-import { View, Text, TouchableOpacity, ScrollView, Image, StyleSheet, BackHandler } from "react-native";
+import { View, Text } from "react-native";
 export default function UserInfoScreen({ navigation }) {
     const { user, setUser } = useContext(AuthContext)
     const [name, setName] = useState(user.displayName)

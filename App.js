@@ -3,7 +3,6 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 // new
 import { useFonts } from 'expo-font';
-//import UserInfoScreen from './components/UserContainer/UserInfo';
 import LoadingScreen from './components/LoadingScreen';
 import LoginScreen from './components/LoginScreen';
 import DetailItem from './components/UI/DetailItem';
@@ -15,6 +14,9 @@ import AuthProvider from './Context/AuthProvider';
 import AppProvider from './Context/AppProvider';
 import UserContainer from './components/Usercontainer';
 import UserInfoScreen from './components/Usercontainer/UserInfo';
+import TermOfUseScreen from './components/Usercontainer/TermOfUse';
+import AboutUsScreen from './components/Usercontainer/AboutUs';
+import ContactScreen from './components/Usercontainer/Contact';
 
 export default function App() {
 
@@ -54,7 +56,33 @@ export default function App() {
             headerStyle: { backgroundColor: '#736D73', height :50}
             , title: 'Account Settings', headerTintColor: "#FFF", headerTitleAlign:'center',
             headerBackTitleStyle: { paddingLeft: 10, }
-          }} /> 
+          }} />
+          <Stack.Screen 
+          name='ContactScreen' 
+          component={ContactScreen}
+          options={{
+            headerStyle: { backgroundColor: '#736D73', height :50}
+            , title: 'Contact', headerTintColor: "#FFF", headerTitleAlign:'center',
+            headerBackTitleStyle: { paddingLeft: 10, }
+          }} />
+          <Stack.Screen 
+          name='TermOfUseScreen' 
+              component={TermOfUseScreen}
+          options={{
+            headerStyle: { backgroundColor: Colors.bgColor, height :50}
+            , headerTintColor: "#FFF",
+            headerBackTitleStyle: { paddingLeft: 10, }
+          }} />
+          
+          <Stack.Screen 
+          name='AboutUsScreen' 
+              component={AboutUsScreen}
+          options={{
+            headerStyle: { backgroundColor: Colors.bgColor, height :50}
+            , headerBackTitleStyle: { paddingLeft: 10, }
+          }} />  
+
+
             <Stack.Screen name='HomeScreen' component={HomeScreen} />
             <Stack.Screen
               options={{

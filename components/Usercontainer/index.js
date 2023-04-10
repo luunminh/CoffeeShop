@@ -1,11 +1,5 @@
 import React, { useContext, useCallback, useEffect } from "react";
 import { View, Text, TouchableOpacity, ScrollView, Image, StyleSheet, BackHandler } from "react-native";
-import Colors from "../Colors";
-import UserInfoScreen from "./UserInfo";
-import BillHistoryScreen from "./BillHistory";
-import AboutUsScreen from "./AboutUs";
-import ContactScreen from "./Contact";
-import TermOfUseScreen from "./TermOfUse";
 import styles from "./styles.js";
 import UserHeader from "../UI/UserHeader";
 import { AppContext } from '../../Context/AppProvider'
@@ -59,21 +53,21 @@ export default function UserContainer({ navigation }) {
                     </View>
                     <View style={styles.rowWrapper}>
                         <View style={styles.row}>
-                            <TouchableOpacity onPress={() => navigation.navigate("AboutUs")}>
+                            <TouchableOpacity onPress={() => navigation.navigate("AboutUsScreen")}>
                                 <Text style={styles.rowTitle}>About Us</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
                     <View style={styles.rowWrapper}>
                         <View style={styles.row}>
-                            <TouchableOpacity onPress={() => navigation.navigate("Contact")}>
+                            <TouchableOpacity onPress={() => navigation.navigate("ContactScreen")}>
                                 <Text style={styles.rowTitle}>Contact</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
                     <View style={styles.rowWrapper}>
                         <View style={styles.row}>
-                            <TouchableOpacity onPress={() => navigation.navigate("TermOfUse")}>
+                            <TouchableOpacity onPress={() => navigation.navigate("TermOfUseScreen")}>
                                 <Text style={styles.rowTitle}>Term Of Use</Text>
                             </TouchableOpacity>
                         </View>
