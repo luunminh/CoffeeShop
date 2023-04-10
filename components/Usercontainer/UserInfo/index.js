@@ -2,10 +2,9 @@ import React, { useContext, useCallback, useEffect } from "react";
 import styles from "./styles";
 import Input from "../../UI/Button/Input";
 import { AuthContext } from "../../../Context/AuthProvider";
-import Colors from "../../Colors";
 import BackButton from "../../UI/DetailItem/BackButton";
 
-import { View, Text, TouchableOpacity, ScrollView, Image, StyleSheet, BackHandler } from "react-native";
+import { View, Text } from "react-native";
 export default function UserInfoScreen({ navigation }) {
 
 
