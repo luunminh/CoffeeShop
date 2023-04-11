@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
         left: 15,
     },
     titleName: {
-        fontSize: 36,
+        fontSize: 33,
         fontFamily: "Rosarivo",
         color: "#FFF",
         paddingBottom: 6,
