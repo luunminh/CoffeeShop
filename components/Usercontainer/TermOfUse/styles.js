@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         paddingVertical: 0,
         gap: 10,
+        paddingBottom: 20,
 
     },
     firstWrap: {
@@ -20,9 +21,9 @@ const styles = StyleSheet.create({
         left: 15,
     },
     titleName: {
-        fontSize: 33,
+        fontSize: 30,
         fontFamily: "Rosarivo",
-        color: "#FFF",
+        color: Colors.activeColor,
         paddingBottom: 6,
         paddingLeft: -4,
         lineHeight: 50,
@@ -30,14 +31,14 @@ const styles = StyleSheet.create({
     },
     txtName: {
         fontSize: 15,
-        fontFamily: "Rosarivo",
-        color: Colors.activeColor,
-        lineHeight: 24,
+        // fontFamily: "Rosarivo",
+        color: "#FFF",
+        lineHeight: 26,
         paddingBottom: 25,
         paddingRight: 15,
+        fontWeight: 300,
     },
     txtUpdate: {
-
         fontSize: 15,
         // fontFamily: "Rosarivo",
         color: "#FFF",
@@ -50,14 +51,14 @@ const styles = StyleSheet.create({
     headerName: {
         fontSize: 19,
         fontWeight: 600,
-        color: "#FFF",
+        color: Colors.activeColor,
         paddingBottom: 10,
         fontFamily: "Rosarivo",
     },
     secondWrap: {
         width: "95%",
         flexDirection: "column",
-        marginBottom: 12,
+        // paddingBottom: 12,
         justifyContent: "space-between",
         left: 15,
     },

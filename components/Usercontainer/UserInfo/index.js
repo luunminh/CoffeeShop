@@ -97,9 +97,6 @@ export default function UserInfoScreen({ navigation }) {
 
     useEffect(() => {
         navigation.setOptions({
-            headerLeft: () => (
-                <BackButton goBackFunc={backToPrevPage} />
-            ),
             headerRight: () => (
                 <TouchableOpacity
                     onPress={() => {

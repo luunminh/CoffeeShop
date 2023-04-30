@@ -3,48 +3,35 @@ import styles from "./styles";
 import BackButton from "../../UI/DetailItem/BackButton";
 import { View, Text, Image, ScrollView } from "react-native";
 export default function ContactScreen({ navigation }) {
-    const backToPrevPage = useCallback(() => {
-        navigation.goBack()
-    }, [navigation])
 
-
-    useEffect(() => {
-        navigation.setOptions({
-
-            headerLeft: () => (
-                <BackButton goBackFunc={backToPrevPage} />
-            ),
-        })
-    }, [])
-
-    return(
+    return (
 
         <View style={styles.container}>
-        <ScrollView>
-            <View style={styles.rowWrapper}>
-                <View style={styles.row}>
-                    <Image
-                        style={styles.backIcon}
-                        source={require('../../../assets/img/telephone.png')}
-                    />
-                    <View style={styles.rightSide}>
-                        <Text style={styles.rowTitle}>Call Center</Text>
-                        <Text style={styles.detailTitle}>05435495743</Text>
+            <ScrollView>
+                <View style={styles.rowWrapper}>
+                    <View style={styles.row}>
+                        <Image
+                            style={styles.backIcon}
+                            source={require('../../../assets/img/telephone.png')}
+                        />
+                        <View style={styles.rightSide}>
+                            <Text style={styles.rowTitle}>Call Center</Text>
+                            <Text style={styles.detailTitle}>05435495743</Text>
+                        </View>
                     </View>
                 </View>
-            </View>
-            <View style={styles.rowWrapper}>
-                <View style={styles.row}>
-                    <Image
-                        style={styles.backIcon}
-                        source={require('../../../assets/img/email.png')}
-                    />
-                    <View style={styles.rightSide}>
-                        <Text style={styles.rowTitle}>Email</Text>
-                        <Text style={styles.detailTitle}>nhamen291002@gmail.com</Text>
+                <View style={styles.rowWrapper}>
+                    <View style={styles.row}>
+                        <Image
+                            style={styles.backIcon}
+                            source={require('../../../assets/img/email.png')}
+                        />
+                        <View style={styles.rightSide}>
+                            <Text style={styles.rowTitle}>Email</Text>
+                            <Text style={styles.detailTitle}>nhamen291002@gmail.com</Text>
+                        </View>
                     </View>
                 </View>
-            </View>
                 <View style={styles.rowWrapper}>
                     <View style={styles.row}>
                         <Image

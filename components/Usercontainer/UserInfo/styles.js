@@ -69,20 +69,20 @@ const styles = StyleSheet.create({
     titleLabel:
     {
         color: '#FFF',
-
         marginTop: 0,
         paddingHorizontal: 10,
         marginBottom: -12,
         // fontFamily:"Rosarivo",
         fontSize: 15,
         color: Colors.textColor,
-        fontWeight: 600
+        fontWeight: 300
     },
     btnSave: {
         fontSize: 16,
-        fontWeight: 700,
         color: Colors.activeColor,
-        color: '#FFF'
+        color: '#FFF',
+        fontFamily: "Rosarivo",
+        paddingRight: 10,
     },
     errorMsg: {
         color: Colors.redColor,

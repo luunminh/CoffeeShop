@@ -104,6 +104,73 @@ export const styles = StyleSheet.create({
         color: Colors.textColor
 
     },
+    modal: {
+        padding: 20,
+        paddingTop: 10,
+        backgroundColor: Colors.lineColor,
+        width: 350,
+        borderRadius: 20,
+        position: "absolute",
+        top: 300,
+        left: "7.5%",
+        alignItems: 'center'
+    },
+    modalHeader: {
+        paddingVertical: 10,
+        color: Colors.activeColor,
+        fontWeight: 600,
+        fontSize: 16,
+    },
+    subTitle: {
+        fontWeight: 300,
+        color: "#FFF",
+        marginBottom: 20,
+    }, input: {
+        paddingHorizontal: 12,
+        // paddingVertical: 14,
+        fontSize: 13,
+        backgroundColor: Colors.bgInputColor,
+        width: "100%",
+        borderRadius: 10,
+        color: Colors.activeColor,
+        flex: 1,
+        // fontFamily: "Rosarivo",
+
+    },
+    btn: {
+        padding: 10,
+        width: 100,
+        backgroundColor: Colors.activeColor,
+        alignItems: 'center',
+        borderRadius: 10,
+    },
+    featureBtn: {
+        padding: 10,
+        width: 80,
+        backgroundColor: Colors.brownColor,
+        alignItems: 'center',
+        borderRadius: 10,
+    },
+    featureText: {
+        textAlign: "center",
+        color: Colors.activeColor,
+        fontFamily: "Rosarivo",
+        lineHeight: 20
+    },
+    btnWrap: {
+        paddingTop: 20,
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        gap: 50,
+
+    },
+    btnText: {
+        fontFamily: "Rosarivo",
+    },
+    inputContainer: {
+        flexDirection: 'row',
+        gap: 10,
+    }
 
 
 })

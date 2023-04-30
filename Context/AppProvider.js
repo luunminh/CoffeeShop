@@ -17,7 +17,7 @@ export default function AppProvider({ children }) {
     const [cart, setCart] = useState('')
     const [cartList, setCartList] = useState([])
     useEffect(() => {
-        console.log("reset...");
+        console.log("re-render set coffeeList and categories");
         let collectionRef = db.collection('coffee')
         const unsubscribe = collectionRef.onSnapshot((snapshot) => {
             const newDocs = snapshot.docs.map((doc) => ({
@@ -105,7 +105,6 @@ export default function AppProvider({ children }) {
                     if (newData.length === 1) {
                         setCart(newData[0].id)
                     } else {
-
                         addDocument('bill', {
                             isPaid: false,
                             time: firebase.firestore.FieldValue.serverTimestamp(),
@@ -155,7 +154,7 @@ export default function AppProvider({ children }) {
                         billId: item.billId
                     }
                 })
-                console.log(newData)
+                // console.log(newData)
                 setCartList(newData)
                 return;
             });
