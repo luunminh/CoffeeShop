@@ -16,7 +16,11 @@ export default function BillHistory({ navigation }) {
                 <View style={styles.itemContainer}>
                     {billLength > 0 ? (billList.map((bill, idx) => (
                         <BillItem item={bill} key={idx} />)
-                    )) : (<Text>No bill yet</Text>)
+                    )) : (
+                        <View style={styles.errorContainer}>
+                            <Text style={styles.errorText}>The cart is empty</Text>
+                        </View>
+                    )
                     }
                 </View>
             </ScrollView>
@@ -35,5 +39,19 @@ const styles = StyleSheet.create({
     itemContainer: {
         flex: 1,
         gap: 30,
-    }
+    },
+    errorContainer: {
+        alignItems: "center",
+        height: 250,
+        width: "100%",
+        justifyContent: "center",
+    },
+    errorText: {
+        textAlign: "center",
+        fontSize: 22,
+        fontFamily: "Rosarivo",
+        width: "60%",
+        color: Colors.textColor
+
+    },
 })
