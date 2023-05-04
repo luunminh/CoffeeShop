@@ -21,7 +21,6 @@ function Header({ navigation, reloadFunc }) {
                         // text2: "There are some errors while processing !!!",
                         autoHide: 'true',
                         visibilityTime: 1000
-
                     })
                 }}
             >

@@ -16,6 +16,7 @@ export default function AppProvider({ children }) {
     const [favouriteList, setIsFavouriteList] = useState([])
     const [cart, setCart] = useState('')
     const [cartList, setCartList] = useState([])
+    const [billList, setBillList] = useState([])
     useEffect(() => {
         console.log("re-render set coffeeList and categories");
         let collectionRef = db.collection('coffee')
@@ -102,6 +103,7 @@ export default function AppProvider({ children }) {
                     let newData = newDocs.filter((item) => {
                         return item.isPaid === false
                     })
+                    setBillList(newDocs)
                     if (newData.length === 1) {
                         setCart(newData[0].id)
                     } else {
@@ -167,7 +169,7 @@ export default function AppProvider({ children }) {
         <AppContext.Provider value={{
             coffeeList, setCoffeeList, isReload, setIsReload, categories, setCategories
             , categoriesIndex, setCategoriesIndex, favouriteList, setIsFavouriteList,
-            cartList, setCartList, cart, setCart
+            cartList, setCartList, cart, setCart, billList, setBillList
         }}>
             {children}
         </AppContext.Provider>

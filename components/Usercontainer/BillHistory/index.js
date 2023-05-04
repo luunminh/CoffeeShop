@@ -8,15 +8,16 @@ import { AppContext } from '../../../Context/AppProvider'
 import Colors from '../../Colors'
 import SideBar from '../../UI/SideBar'
 export default function BillHistory({ navigation }) {
+    const { billList, setBillList } = useContext(AppContext)
+    const billLength = billList.filter(bill => bill.isPaid === true).length
     return (
         <View style={styles.container}>
             <ScrollView>
                 <View style={styles.itemContainer}>
-                    <BillItem />
-                    <BillItem />
-                    <BillItem />
-                    <BillItem />
-                    <BillItem />
+                    {billLength > 0 ? (billList.map((bill, idx) => (
+                        <BillItem item={bill} key={idx} />)
+                    )) : (<Text>No bill yet</Text>)
+                    }
                 </View>
             </ScrollView>
         </View>
