@@ -15,7 +15,7 @@ export default function BillHistory({ navigation }) {
             <ScrollView>
                 <View style={styles.itemContainer}>
                     {billLength > 0 ? (billList.map((bill, idx) => (
-                        <BillItem item={bill} key={idx} />)
+                        <BillItem item={bill} key={idx} navigation={navigation} />)
                     )) : (
                         <View style={styles.errorContainer}>
                             <Text style={styles.errorText}>The cart is empty</Text>

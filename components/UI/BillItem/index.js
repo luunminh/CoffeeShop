@@ -4,7 +4,7 @@ import Colors from '../../Colors'
 import { formatRelative } from 'date-fns/esm';
 import { db } from '../../../firebase/config';
 import { AppContext } from '../../../Context/AppProvider';
-export default function BillItem({ item }) {
+export default function BillItem({ item, navigation }) {
     const [total, setTotal] = useState(0)
     const [itemList, setItemList] = useState([])
     const { coffeeList } = useContext(AppContext)
@@ -36,7 +36,12 @@ export default function BillItem({ item }) {
             let rs = newData.length > 0 ? (newData.reduce((acc, cur) => {
                 return acc + cur.price * cur.quantity
             }, 0)) : 0
-            setTotal(rs)
+
+            setTotal(() => {
+                if (rs > 0) {
+                    return rs + 20000
+                } return rs
+            })
             return
         });
         return unsubscribe
@@ -71,7 +76,16 @@ export default function BillItem({ item }) {
             <View style={styles.priceWrap}>
                 <Text style={styles.price}>{`${new Intl.NumberFormat('en-US').format(total)} vnđ`}</Text>
                 <TouchableOpacity style={styles.detailWrap}>
-                    <Text style={styles.detailBtn}>Detail</Text>
+                    <Text style={styles.detailBtn}
+                        onPress={() => {
+                            if (itemList.length > 0) {
+                                const listBill = [...itemList]
+                                navigation.navigate('BillDetailItem', { listBill })
+                            } else {
+                                alert("This bill doesn't have any product to view !!!")
+                            }
+                        }}
+                    >Detail</Text>
                 </TouchableOpacity>
             </View>
         </View>

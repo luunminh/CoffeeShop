@@ -18,7 +18,7 @@ import BillHistory from './components/Usercontainer/BillHistory';
 import TermOfUseScreen from './components/Usercontainer/TermOfUse';
 import AboutUsScreen from './components/Usercontainer/AboutUs';
 import ContactScreen from './components/Usercontainer/Contact';
-
+import BillDetailItem from './components/UI/BillDetailItem';
 export default function App() {
 
     let [fontsLoaded] = useFonts({
@@ -74,6 +74,15 @@ export default function App() {
                             options={{
                                 headerStyle: { backgroundColor: Colors.bgColor, height: 50 }
                                 , title: 'Bill History', headerTintColor: Colors.activeColor, headerTitleAlign: 'center',
+                                headerTitleStyle: { fontFamily: "Rosarivo", fontSize: 15 },
+                                headerBackTitleStyle: { paddingLeft: 10, }
+                            }} />
+                            <Stack.Screen
+                            name='BillDetailItem'
+                            component={BillDetailItem}
+                            options={{
+                                headerStyle: { backgroundColor: Colors.bgColor, height: 50 }
+                                , title: 'Bill Detail', headerTintColor: Colors.activeColor, headerTitleAlign: 'center',
                                 headerTitleStyle: { fontFamily: "Rosarivo", fontSize: 15 },
                                 headerBackTitleStyle: { paddingLeft: 10, }
                             }} />
