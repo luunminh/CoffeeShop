@@ -108,8 +108,9 @@ const styles = StyleSheet.create({
     userWrap: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'flex-start',
+        justifyContent: 'space-between',
         gap: 15,
+        width: "100%"
     },
     leftSide:
     {
@@ -138,7 +139,7 @@ const styles = StyleSheet.create({
     titlesSubtitle: {
         marginBottom: 5,
         fontFamily: 'Rosarivo',
-        fontSize: 25,
+        fontSize: 22,
         color: '#EFE3C8'
 
     },

@@ -1,29 +1,42 @@
 {
-    "expo": {
-        "name": "CoffeeShop",
-        "slug": "CoffeeShop",
-        "version": "1.0.0",
-        "orientation": "portrait",
-        "icon": "./assets/icon.png",
-        "userInterfaceStyle": "light",
-        "splash": {
-            "image": "./assets/splash.png",
-            "resizeMode": "contain",
-            "backgroundColor": "#ffffff"
-        },
-        "plugins": ["expo-image-picker"],
-        "assetBundlePatterns": ["**/*"],
-        "ios": {
-            "supportsTablet": true
-        },
-        "android": {
-            "adaptiveIcon": {
-                "foregroundImage": "./assets/adaptive-icon.png",
-                "backgroundColor": "#ffffff"
-            }
-        },
-        "web": {
-            "favicon": "./assets/favicon.png"
-        }
+  "expo": {
+    "name": "CoffeeShop",
+    "slug": "CoffeeShop",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/img/nameLogo.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/img/nameLogo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#1C161E"
+    },
+    "plugins": [
+      "expo-image-picker"
+    ],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ],
+      "package": "com.luunminh.CoffeeShop"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "c382f3de-a360-4174-862c-eb320bd5e865"
+      }
     }
+  }
 }

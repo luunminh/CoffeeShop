@@ -97,8 +97,8 @@ const styles = StyleSheet.create({
 
     },
     itemImg: {
-        width: 126,
-        height: 126,
+        width: 110,
+        height: 110,
         borderRadius: 6,
     },
     rightSide: {
